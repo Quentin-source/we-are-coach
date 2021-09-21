@@ -17,6 +17,10 @@ class User
      */
     private $id;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $user_pseudo;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -63,14 +67,14 @@ class User
         return $this->id;
     }
 
-    public function getUser(): ?string
+    public function getUserPseudo(): ?string
     {
-        return $this->User;
+        return $this->user_pseudo;
     }
 
-    public function setUser(string $User): self
+    public function setUserPseudo(string $user_pseudo): self
     {
-        $this->User = $User;
+        $this->user_pseudo = $user_pseudo;
 
         return $this;
     }
