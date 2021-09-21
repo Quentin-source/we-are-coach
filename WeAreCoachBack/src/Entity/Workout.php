@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\WorkoutRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,6 +53,28 @@ class Workout
      * @ORM\Column(type="datetime_immutable")
      */
     private $published_at;
+
+    /**
+     * @ORM\OneToOne(targetEntity=sport::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Sport;
+
+    /**
+     * @ORM\OneToMany(targetEntity=comment::class, mappedBy="workout")
+     */
+    private $Comment;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Workout")
+     */
+    private $user;
+
+    public function __construct()
+    {
+        $this->Comment = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -137,6 +161,48 @@ class Workout
     public function setPublishedAt(\DateTimeImmutable $published_at): self
     {
         $this->published_at = $published_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|comment[]
+     */
+    public function getComment(): Collection
+    {
+        return $this->Comment;
+    }
+
+    public function addComment(comment $comment): self
+    {
+        if (!$this->Comment->contains($comment)) {
+            $this->Comment[] = $comment;
+            $comment->setWorkout($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(comment $comment): self
+    {
+        if ($this->Comment->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getWorkout() === $this) {
+                $comment->setWorkout(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

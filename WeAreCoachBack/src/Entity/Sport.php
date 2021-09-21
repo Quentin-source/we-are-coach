@@ -32,6 +32,14 @@ class Sport
      */
     private $picture;
 
+    /**
+     * @ORM\OneToOne(targetEntity=category::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Category;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -72,4 +80,5 @@ class Sport
 
         return $this;
     }
+
 }

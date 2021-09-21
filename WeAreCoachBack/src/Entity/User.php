@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -61,6 +63,34 @@ class User
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;
+
+    /**
+     * @ORM\OneToMany(targetEntity=comment::class, mappedBy="user")
+     */
+    private $Comment;
+
+    /**
+     * @ORM\OneToMany(targetEntity=workout::class, mappedBy="user")
+     */
+    private $Workout;
+
+    /**
+     * @ORM\OneToMany(targetEntity=rate::class, mappedBy="user")
+     */
+    private $Rate;
+
+    /**
+     * @ORM\OneToMany(targetEntity=favorite::class, mappedBy="user")
+     */
+    private $Favorite;
+
+    public function __construct()
+    {
+        $this->Comment = new ArrayCollection();
+        $this->Workout = new ArrayCollection();
+        $this->Rate = new ArrayCollection();
+        $this->Favorite = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -171,6 +201,126 @@ class User
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|comment[]
+     */
+    public function getComment(): Collection
+    {
+        return $this->Comment;
+    }
+
+    public function addComment(comment $comment): self
+    {
+        if (!$this->Comment->contains($comment)) {
+            $this->Comment[] = $comment;
+            $comment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(comment $comment): self
+    {
+        if ($this->Comment->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|workout[]
+     */
+    public function getWorkout(): Collection
+    {
+        return $this->Workout;
+    }
+
+    public function addWorkout(workout $workout): self
+    {
+        if (!$this->Workout->contains($workout)) {
+            $this->Workout[] = $workout;
+            $workout->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWorkout(workout $workout): self
+    {
+        if ($this->Workout->removeElement($workout)) {
+            // set the owning side to null (unless already changed)
+            if ($workout->getUser() === $this) {
+                $workout->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|rate[]
+     */
+    public function getRate(): Collection
+    {
+        return $this->Rate;
+    }
+
+    public function addRate(rate $rate): self
+    {
+        if (!$this->Rate->contains($rate)) {
+            $this->Rate[] = $rate;
+            $rate->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRate(rate $rate): self
+    {
+        if ($this->Rate->removeElement($rate)) {
+            // set the owning side to null (unless already changed)
+            if ($rate->getUser() === $this) {
+                $rate->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|favorite[]
+     */
+    public function getFavorite(): Collection
+    {
+        return $this->Favorite;
+    }
+
+    public function addFavorite(favorite $favorite): self
+    {
+        if (!$this->Favorite->contains($favorite)) {
+            $this->Favorite[] = $favorite;
+            $favorite->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(favorite $favorite): self
+    {
+        if ($this->Favorite->removeElement($favorite)) {
+            // set the owning side to null (unless already changed)
+            if ($favorite->getUser() === $this) {
+                $favorite->setUser(null);
+            }
+        }
 
         return $this;
     }

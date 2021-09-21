@@ -32,6 +32,16 @@ class Comment
      */
     private $published_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Workout::class, inversedBy="Comment")
+     */
+    private $workout;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Comment")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,30 @@ class Comment
     public function setPublishedAt(\DateTimeImmutable $published_at): self
     {
         $this->published_at = $published_at;
+
+        return $this;
+    }
+
+    public function getWorkout(): ?Workout
+    {
+        return $this->workout;
+    }
+
+    public function setWorkout(?Workout $workout): self
+    {
+        $this->workout = $workout;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
