@@ -44,10 +44,22 @@ class User
      */
     private $age;
 
+
+
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $sport;
+    private $sport1;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $sport2;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $sport3;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -65,6 +77,11 @@ class User
     private $picture;
 
     /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
      * @ORM\OneToMany(targetEntity=comment::class, mappedBy="user")
      */
     private $Comment;
@@ -80,9 +97,22 @@ class User
     private $Rate;
 
     /**
+     * @ORM\OneToOne(targetEntity=Rate::class, mappedBy="User", cascade={"persist", "remove"})
+     */
+    private $rate;
+
+    /**
      * @ORM\OneToMany(targetEntity=favorite::class, mappedBy="user")
      */
     private $Favorite;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Favorite::class, mappedBy="User", cascade={"persist", "remove"})
+     */
+    private $favorite;
+
+
+
 
     public function __construct()
     {
@@ -90,6 +120,7 @@ class User
         $this->Workout = new ArrayCollection();
         $this->Rate = new ArrayCollection();
         $this->Favorite = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -157,14 +188,42 @@ class User
         return $this;
     }
 
-    public function getSport(): ?string
+
+
+    public function getSport1(): ?string
     {
-        return $this->sport;
+        return $this->sport1;
     }
 
-    public function setSport(string $sport): self
+    public function setSport1(string $sport1): self
     {
-        $this->sport = $sport;
+        $this->sport1 = $sport1;
+
+        return $this;
+    }
+
+
+    public function getSport2(): ?string
+    {
+        return $this->sport2;
+    }
+
+    public function setSport2(string $sport2): self
+    {
+        $this->sport2 = $sport2;
+
+        return $this;
+    }
+
+
+    public function getSport3(): ?string
+    {
+        return $this->sport3;
+    }
+
+    public function setSport3(string $sport3): self
+    {
+        $this->sport3 = $sport3;
 
         return $this;
     }
@@ -201,6 +260,28 @@ class User
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+        /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        // On récupère les roles associés à l'utilisateur
+        // Pour demo2, $roles = [];
+        // Pour adrien, $roles = ["ROLE_ADMIN"];
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER'; // ["ROLE_ADMIN", "ROLE_USER"]
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
@@ -295,6 +376,18 @@ class User
         return $this;
     }
 
+    public function setRate(Rate $rate): self
+    {
+        // set the owning side of the relation if necessary
+        if ($rate->getUser() !== $this) {
+            $rate->setUser($this);
+        }
+
+        $this->rate = $rate;
+
+        return $this;
+    }
+
     /**
      * @return Collection|favorite[]
      */
@@ -324,4 +417,17 @@ class User
 
         return $this;
     }
+
+    public function setFavorite(Favorite $favorite): self
+    {
+        // set the owning side of the relation if necessary
+        if ($favorite->getUser() !== $this) {
+            $favorite->setUser($this);
+        }
+
+        $this->favorite = $favorite;
+
+        return $this;
+    }
+
 }

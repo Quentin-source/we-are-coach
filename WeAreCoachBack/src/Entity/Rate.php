@@ -23,15 +23,23 @@ class Rate
     private $rate;
 
     /**
-     * @ORM\OneToOne(targetEntity=workout::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Workout::class, inversedBy="Rate")
      */
-    private $Workout;
+    private $workout;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Rate")
      */
     private $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity=user::class, inversedBy="rate", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $User;
+
+
+
 
     public function getId(): ?int
     {
@@ -50,14 +58,14 @@ class Rate
         return $this;
     }
 
-    public function getWorkout(): ?workout
+    public function getWorkout(): ?Workout
     {
-        return $this->Workout;
+        return $this->workout;
     }
 
-    public function setWorkout(workout $Workout): self
+    public function setWorkout(?Workout $workout): self
     {
-        $this->Workout = $Workout;
+        $this->workout = $workout;
 
         return $this;
     }
@@ -73,4 +81,6 @@ class Rate
 
         return $this;
     }
+
+
 }

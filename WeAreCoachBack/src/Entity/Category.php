@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,18 @@ class Category
      * @ORM\Column(type="string", length=255)
      */
     private $picture;
+
+    /**
+     * @ORM\OneToMany(targetEntity=sport::class, mappedBy="category")
+     */
+    private $Sport;
+
+
+
+    public function __construct()
+    {
+        $this->Sport = new ArrayCollection();
+    }
 
 
 
@@ -55,6 +69,36 @@ class Category
     public function setPicture(string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|sport[]
+     */
+    public function getSport(): Collection
+    {
+        return $this->Sport;
+    }
+
+    public function addSport(sport $sport): self
+    {
+        if (!$this->Sport->contains($sport)) {
+            $this->Sport[] = $sport;
+            $sport->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSport(sport $sport): self
+    {
+        if ($this->Sport->removeElement($sport)) {
+            // set the owning side to null (unless already changed)
+            if ($sport->getCategory() === $this) {
+                $sport->setCategory(null);
+            }
+        }
 
         return $this;
     }

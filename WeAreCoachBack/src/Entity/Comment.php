@@ -17,10 +17,6 @@ class Comment
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $user_name;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -47,17 +43,6 @@ class Comment
         return $this->id;
     }
 
-    public function getUserName(): ?string
-    {
-        return $this->user_name;
-    }
-
-    public function setUserName(string $user_name): self
-    {
-        $this->user_name = $user_name;
-
-        return $this;
-    }
 
     public function getComment(): ?string
     {
