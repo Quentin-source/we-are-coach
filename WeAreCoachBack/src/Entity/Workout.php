@@ -24,10 +24,7 @@ class Workout
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $sport;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -39,10 +36,6 @@ class Workout
      */
     private $level;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $published_by;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -54,11 +47,6 @@ class Workout
      */
     private $published_at;
 
-    /**
-     * @ORM\OneToOne(targetEntity=sport::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Sport;
 
     /**
      * @ORM\OneToMany(targetEntity=comment::class, mappedBy="workout")
@@ -70,9 +58,33 @@ class Workout
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Sport::class, inversedBy="Workout")
+     */
+    private $sport;
+
+    /**
+     * @ORM\OneToMany(targetEntity=rate::class, mappedBy="workout")
+     */
+    private $Rate;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Rate::class, mappedBy="Workout", cascade={"persist", "remove"})
+     */
+    private $rate;
+
+    /**
+     * @ORM\OneToMany(targetEntity=favorite::class, mappedBy="workout")
+     */
+    private $Favorite;
+
+
+
     public function __construct()
     {
         $this->Comment = new ArrayCollection();
+        $this->Rate = new ArrayCollection();
+        $this->Favorite = new ArrayCollection();
     }
 
 
@@ -93,17 +105,7 @@ class Workout
         return $this;
     }
 
-    public function getSport(): ?string
-    {
-        return $this->sport;
-    }
 
-    public function setSport(string $sport): self
-    {
-        $this->sport = $sport;
-
-        return $this;
-    }
 
     public function getDescription(): ?string
     {
@@ -129,17 +131,6 @@ class Workout
         return $this;
     }
 
-    public function getPublishedBy(): ?string
-    {
-        return $this->published_by;
-    }
-
-    public function setPublishedBy(string $published_by): self
-    {
-        $this->published_by = $published_by;
-
-        return $this;
-    }
 
     public function getPicture(): ?string
     {
@@ -206,4 +197,91 @@ class Workout
 
         return $this;
     }
+
+    public function getSport(): ?Sport
+    {
+        return $this->sport;
+    }
+
+    public function setSport(?Sport $sport): self
+    {
+        $this->sport = $sport;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|rate[]
+     */
+    public function getRate(): Collection
+    {
+        return $this->Rate;
+    }
+
+    public function addRate(rate $rate): self
+    {
+        if (!$this->Rate->contains($rate)) {
+            $this->Rate[] = $rate;
+            $rate->setWorkout($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRate(rate $rate): self
+    {
+        if ($this->Rate->removeElement($rate)) {
+            // set the owning side to null (unless already changed)
+            if ($rate->getWorkout() === $this) {
+                $rate->setWorkout(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function setRate(Rate $rate): self
+    {
+        // set the owning side of the relation if necessary
+        if ($rate->getWorkout() !== $this) {
+            $rate->setWorkout($this);
+        }
+
+        $this->rate = $rate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|favorite[]
+     */
+    public function getFavorite(): Collection
+    {
+        return $this->Favorite;
+    }
+
+    public function addFavorite(favorite $favorite): self
+    {
+        if (!$this->Favorite->contains($favorite)) {
+            $this->Favorite[] = $favorite;
+            $favorite->setWorkout($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(favorite $favorite): self
+    {
+        if ($this->Favorite->removeElement($favorite)) {
+            // set the owning side to null (unless already changed)
+            if ($favorite->getWorkout() === $this) {
+                $favorite->setWorkout(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
 }
