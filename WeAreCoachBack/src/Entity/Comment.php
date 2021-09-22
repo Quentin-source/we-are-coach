@@ -29,12 +29,12 @@ class Comment
     private $published_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Workout::class, inversedBy="Comment")
+     * @ORM\ManyToOne(targetEntity=Workout::class, inversedBy="comment")
      */
     private $workout;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Comment")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comment")
      */
     private $user;
 

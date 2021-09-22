@@ -23,7 +23,7 @@ class Rate
     private $rate;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Workout::class, inversedBy="Rate")
+     * @ORM\ManyToOne(targetEntity=Workout::class, inversedBy="rate")
      */
     private $workout;
 

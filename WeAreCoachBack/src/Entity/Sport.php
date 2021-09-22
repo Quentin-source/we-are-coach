@@ -36,13 +36,13 @@ class Sport
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity=workout::class, mappedBy="sport")
+     * @ORM\OneToMany(targetEntity=Workout::class, mappedBy="sport")
      */
-    private $Workout;
+    private $workout;
 
     public function __construct()
     {
-        $this->Workout = new ArrayCollection();
+        $this->workout = new ArrayCollection();
     }
 
 
@@ -98,8 +98,8 @@ class Sport
 
     public function addWorkout(workout $workout): self
     {
-        if (!$this->Workout->contains($workout)) {
-            $this->Workout[] = $workout;
+        if (!$this->workout->contains($workout)) {
+            $this->workout[] = $workout;
             $workout->setSport($this);
         }
 
@@ -108,7 +108,7 @@ class Sport
 
     public function removeWorkout(workout $workout): self
     {
-        if ($this->Workout->removeElement($workout)) {
+        if ($this->workout->removeElement($workout)) {
             // set the owning side to null (unless already changed)
             if ($workout->getSport() === $this) {
                 $workout->setSport(null);
