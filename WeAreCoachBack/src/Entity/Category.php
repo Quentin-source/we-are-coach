@@ -30,6 +30,11 @@ class Category
     private $picture;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $description;
+
+    /**
      * @ORM\OneToMany(targetEntity=sport::class, mappedBy="category")
      */
     private $Sport;
@@ -69,6 +74,18 @@ class Category
     public function setPicture(string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->pictudescriptionre = $description;
 
         return $this;
     }
