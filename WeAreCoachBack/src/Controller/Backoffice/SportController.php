@@ -5,16 +5,25 @@ namespace App\Controller\Backoffice;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Sport;
+use App\Repository\SportRepository;
+
+    /**
+     * @Route("/backoffice/sport", name="backoffice_sport_")
+     */
 
 class SportController extends AbstractController
 {
     /**
-     * @Route("/backoffice/sport", name="backoffice_sport")
+     * Show all categories from Admin 
+     * 
+     * @Route("/", name="index")
      */
-    public function index(): Response
+    public function index(SportRepository $sportRepository): Response
     {
         return $this->render('backoffice/sport/index.html.twig', [
-            'controller_name' => 'SportController',
+            'sports' => $sportRepository->findAll(),
         ]);
     }
+
 }

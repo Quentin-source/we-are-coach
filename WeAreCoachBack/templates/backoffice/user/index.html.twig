@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Hello CategorieController!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,32 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello ! ✅</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Pseudo</th>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/Apothéose/projet-workout-plan/WeAreCoachBack/src/Controller/Backoffice/UserController.php'|file_link(0) }}">src/Controller/Backoffice/UserController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/Apothéose/projet-workout-plan/WeAreCoachBack/templates/backoffice/user/index.html.twig'|file_link(0) }}">templates/backoffice/user/index.html.twig</a></code></li>
-    </ul>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.mail }}</td>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.pseudo }}</td>
+
+                </tr>
+            {% endfor %}
 </div>
 {% endblock %}

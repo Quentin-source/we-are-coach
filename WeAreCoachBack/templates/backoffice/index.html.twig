@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BackofficeController!{% endblock %}
+{% block title %}Hello Backoffice!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,14 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Bienvenue dans le Backoffice de We are coach !</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/Apothéose/projet-workout-plan/WeAreCoachBack/src/Controller/Backoffice/BackofficeController.php'|file_link(0) }}">src/Controller/Backoffice/BackofficeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/Apothéose/projet-workout-plan/WeAreCoachBack/templates/backoffice/backoffice/index.html.twig'|file_link(0) }}">templates/backoffice/backoffice/index.html.twig</a></code></li>
-    </ul>
+<ul>
+<li><a href="{{ path('backoffice_user_index') }}">Gérer les utilisateurs</a></li>
+<li><a href="{{ path('backoffice_workout_index') }}">Gérer les entrainements</a></li>
+<li><a href="{{ path('backoffice_category_index') }}">Gérer les catégories</a></li>
+<li><a href="{{ path('backoffice_sport_index') }}">Gérer les sports</a></li>
+
+</ul>
 </div>
 {% endblock %}

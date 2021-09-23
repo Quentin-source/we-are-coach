@@ -19,15 +19,7 @@ class User
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $user_pseudo;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -82,7 +74,7 @@ class User
     private $roles = [];
 
     /**
-     * @ORM\OneToMany(targetEntity=comment::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
      */
     private $comment;
 
@@ -92,15 +84,25 @@ class User
     private $Workout;
 
     /**
-     * @ORM\OneToMany(targetEntity=rate::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="user")
      */
     private $Rate;
 
 
     /**
-     * @ORM\OneToMany(targetEntity=favorite::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="user")
      */
     private $favorite;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $pseudo;
 
 
 
@@ -120,29 +122,6 @@ class User
         return $this->id;
     }
 
-    public function getUserPseudo(): ?string
-    {
-        return $this->user_pseudo;
-    }
-
-    public function setUserPseudo(string $user_pseudo): self
-    {
-        $this->user_pseudo = $user_pseudo;
-
-        return $this;
-    }
-
-    public function getFirstame(): ?string
-    {
-        return $this->firstname;
-    }
-
-    public function setFirstname(string $firstname): self
-    {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
 
     public function getLastname(): ?string
     {
@@ -418,6 +397,30 @@ class User
         }
 
         $this->favorite = $favorite;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }

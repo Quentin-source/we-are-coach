@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello WorkoutController!{% endblock %}
+{% block title %}Hello workoutController!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Liste des entrainements</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/Apothéose/projet-workout-plan/WeAreCoachBack/src/Controller/Backoffice/WorkoutController.php'|file_link(0) }}">src/Controller/Backoffice/WorkoutController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/Apothéose/projet-workout-plan/WeAreCoachBack/templates/backoffice/workout/index.html.twig'|file_link(0) }}">templates/backoffice/workout/index.html.twig</a></code></li>
-    </ul>
+            {% for workout in workouts %}
+                <li>
+                        {{ workout.name }}
+
+                </li>
+            {% endfor %}
 </div>
 {% endblock %}

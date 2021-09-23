@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SportController!{% endblock %}
+{% block title %}Hello CategorieController!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,12 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Liste des sports</h1>
+    <h1>Liste des catégories</h1>
 
-            {% for sport in sports %}
+            {% for category in categories %}
                 <li>
-                        {{ sport.name }}
-
+                        {{ category.name }}
+                        <img src="{{category.picture}}" width="300">
                 </li>
             {% endfor %}
 </div>
