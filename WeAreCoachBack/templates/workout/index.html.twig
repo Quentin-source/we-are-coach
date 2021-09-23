@@ -13,7 +13,10 @@
 
     <ul>
 {% for workout in workoutList %}
-<li> {{workout.name}} </li>
+<li> {{workout.name}} 
+<img src="{{workout.picture}}">
+
+</li>
 
 {% endfor %}
     </ul>
