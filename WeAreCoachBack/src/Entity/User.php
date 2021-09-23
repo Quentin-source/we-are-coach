@@ -27,12 +27,12 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $firstname;
+    private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -96,10 +96,6 @@ class User
      */
     private $Rate;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Rate::class, mappedBy="User", cascade={"persist", "remove"})
-     */
-    private $rate;
 
     /**
      * @ORM\OneToMany(targetEntity=favorite::class, mappedBy="user")
@@ -136,19 +132,7 @@ class User
         return $this;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getFirstname(): ?string
+    public function getFirstame(): ?string
     {
         return $this->firstname;
     }
@@ -156,6 +140,18 @@ class User
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
 
         return $this;
     }

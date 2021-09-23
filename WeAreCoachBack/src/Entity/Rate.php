@@ -32,12 +32,6 @@ class Rate
      */
     private $user;
 
-    /**
-     * @ORM\OneToOne(targetEntity=user::class, inversedBy="rate", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $User;
-
 
 
 
