@@ -27,12 +27,12 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $firstname;
+    private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -84,10 +84,10 @@ class User
     /**
      * @ORM\OneToMany(targetEntity=comment::class, mappedBy="user")
      */
-    private $Comment;
+    private $comment;
 
     /**
-     * @ORM\OneToMany(targetEntity=workout::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Workout::class, mappedBy="user")
      */
     private $Workout;
 
@@ -96,30 +96,22 @@ class User
      */
     private $Rate;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Rate::class, mappedBy="User", cascade={"persist", "remove"})
-     */
-    private $rate;
 
     /**
      * @ORM\OneToMany(targetEntity=favorite::class, mappedBy="user")
-     */
-    private $Favorite;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Favorite::class, mappedBy="User", cascade={"persist", "remove"})
      */
     private $favorite;
 
 
 
 
+
     public function __construct()
     {
-        $this->Comment = new ArrayCollection();
+        $this->comment = new ArrayCollection();
         $this->Workout = new ArrayCollection();
         $this->Rate = new ArrayCollection();
-        $this->Favorite = new ArrayCollection();
+        $this->favorite = new ArrayCollection();
 
     }
 
@@ -140,19 +132,7 @@ class User
         return $this;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getFirstname(): ?string
+    public function getFirstame(): ?string
     {
         return $this->firstname;
     }
@@ -160,6 +140,18 @@ class User
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
 
         return $this;
     }
@@ -296,8 +288,8 @@ class User
 
     public function addComment(comment $comment): self
     {
-        if (!$this->Comment->contains($comment)) {
-            $this->Comment[] = $comment;
+        if (!$this->comment->contains($comment)) {
+            $this->comment[] = $comment;
             $comment->setUser($this);
         }
 
@@ -306,7 +298,7 @@ class User
 
     public function removeComment(comment $comment): self
     {
-        if ($this->Comment->removeElement($comment)) {
+        if ($this->comment->removeElement($comment)) {
             // set the owning side to null (unless already changed)
             if ($comment->getUser() === $this) {
                 $comment->setUser(null);
@@ -393,13 +385,13 @@ class User
      */
     public function getFavorite(): Collection
     {
-        return $this->Favorite;
+        return $this->favorite;
     }
 
     public function addFavorite(favorite $favorite): self
     {
-        if (!$this->Favorite->contains($favorite)) {
-            $this->Favorite[] = $favorite;
+        if (!$this->favorite->contains($favorite)) {
+            $this->favorite[] = $favorite;
             $favorite->setUser($this);
         }
 
@@ -408,7 +400,7 @@ class User
 
     public function removeFavorite(favorite $favorite): self
     {
-        if ($this->Favorite->removeElement($favorite)) {
+        if ($this->favorite->removeElement($favorite)) {
             // set the owning side to null (unless already changed)
             if ($favorite->getUser() === $this) {
                 $favorite->setUser(null);

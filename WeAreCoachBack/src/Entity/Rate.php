@@ -23,7 +23,7 @@ class Rate
     private $rate;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Workout::class, inversedBy="Rate")
+     * @ORM\ManyToOne(targetEntity=Workout::class, inversedBy="rate")
      */
     private $workout;
 
@@ -31,12 +31,6 @@ class Rate
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Rate")
      */
     private $user;
-
-    /**
-     * @ORM\OneToOne(targetEntity=user::class, inversedBy="rate", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $User;
 
 
 

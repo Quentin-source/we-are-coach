@@ -23,12 +23,12 @@ class Favorite
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Workout::class, inversedBy="Favorite")
+     * @ORM\ManyToOne(targetEntity=Workout::class, inversedBy="favorite")
      */
     private $workout;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Favorite")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="favorite")
      */
     private $user;
 

@@ -49,9 +49,9 @@ class Workout
 
 
     /**
-     * @ORM\OneToMany(targetEntity=comment::class, mappedBy="workout")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="workout")
      */
-    private $Comment;
+    private $comment;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Workout")
@@ -59,32 +59,29 @@ class Workout
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Sport::class, inversedBy="Workout")
+     * @ORM\ManyToOne(targetEntity=Sport::class, inversedBy="workout")
      */
     private $sport;
 
     /**
-     * @ORM\OneToMany(targetEntity=rate::class, mappedBy="workout")
-     */
-    private $Rate;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Rate::class, mappedBy="Workout", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="workout")
      */
     private $rate;
 
+
+
     /**
-     * @ORM\OneToMany(targetEntity=favorite::class, mappedBy="workout")
+     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="workout")
      */
-    private $Favorite;
+    private $favorite;
 
 
 
     public function __construct()
     {
-        $this->Comment = new ArrayCollection();
-        $this->Rate = new ArrayCollection();
-        $this->Favorite = new ArrayCollection();
+        $this->comment = new ArrayCollection();
+        $this->rate = new ArrayCollection();
+        $this->favorite = new ArrayCollection();
     }
 
 
@@ -157,26 +154,26 @@ class Workout
     }
 
     /**
-     * @return Collection|comment[]
+     * @return Collection|Comment[]
      */
     public function getComment(): Collection
     {
-        return $this->Comment;
+        return $this->comment;
     }
 
-    public function addComment(comment $comment): self
+    public function addComment(Comment $comment): self
     {
-        if (!$this->Comment->contains($comment)) {
-            $this->Comment[] = $comment;
+        if (!$this->comment->contains($comment)) {
+            $this->comment[] = $comment;
             $comment->setWorkout($this);
         }
 
         return $this;
     }
 
-    public function removeComment(comment $comment): self
+    public function removeComment(Comment $comment): self
     {
-        if ($this->Comment->removeElement($comment)) {
+        if ($this->comment->removeElement($comment)) {
             // set the owning side to null (unless already changed)
             if ($comment->getWorkout() === $this) {
                 $comment->setWorkout(null);
@@ -211,26 +208,26 @@ class Workout
     }
 
     /**
-     * @return Collection|rate[]
+     * @return Collection|Rate[]
      */
     public function getRate(): Collection
     {
-        return $this->Rate;
+        return $this->rate;
     }
 
-    public function addRate(rate $rate): self
+    public function addRate(Rate $rate): self
     {
-        if (!$this->Rate->contains($rate)) {
-            $this->Rate[] = $rate;
+        if (!$this->rate->contains($rate)) {
+            $this->rate[] = $rate;
             $rate->setWorkout($this);
         }
 
         return $this;
     }
 
-    public function removeRate(rate $rate): self
+    public function removeRate(Rate $rate): self
     {
-        if ($this->Rate->removeElement($rate)) {
+        if ($this->rate->removeElement($rate)) {
             // set the owning side to null (unless already changed)
             if ($rate->getWorkout() === $this) {
                 $rate->setWorkout(null);
@@ -253,26 +250,26 @@ class Workout
     }
 
     /**
-     * @return Collection|favorite[]
+     * @return Collection|Favorite[]
      */
     public function getFavorite(): Collection
     {
-        return $this->Favorite;
+        return $this->favorite;
     }
 
-    public function addFavorite(favorite $favorite): self
+    public function addFavorite(Favorite $favorite): self
     {
-        if (!$this->Favorite->contains($favorite)) {
-            $this->Favorite[] = $favorite;
+        if (!$this->favorite->contains($favorite)) {
+            $this->favorite[] = $favorite;
             $favorite->setWorkout($this);
         }
 
         return $this;
     }
 
-    public function removeFavorite(favorite $favorite): self
+    public function removeFavorite(Favorite $favorite): self
     {
-        if ($this->Favorite->removeElement($favorite)) {
+        if ($this->favorite->removeElement($favorite)) {
             // set the owning side to null (unless already changed)
             if ($favorite->getWorkout() === $this) {
                 $favorite->setWorkout(null);
