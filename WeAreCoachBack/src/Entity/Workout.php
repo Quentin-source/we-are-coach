@@ -6,6 +6,7 @@ use App\Repository\WorkoutRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=WorkoutRepository::class)
@@ -16,11 +17,13 @@ class Workout
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"latest_workout"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"latest_workout"})
      */
     private $name;
 
@@ -28,6 +31,7 @@ class Workout
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"latest_workout"})
      */
     private $description;
 
@@ -39,6 +43,7 @@ class Workout
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"latest_workout"})
      */
     private $picture;
 

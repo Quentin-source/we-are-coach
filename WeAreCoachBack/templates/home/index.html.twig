@@ -12,6 +12,16 @@
     <h1>Hello! ✅</h1>
 
     <ul>
+        {% for category in categoryList %}
+            <li> {{category.name}} 
+            <img src="{{category.picture}}" width="100" >
+            {{category.description}}
+            </li>
+        {% endfor %}
+    </ul>
+<a href="{{ path('backoffice_backoffice') }}">Accès au Backoffice</a>
+
+    <ul>
 {% for workout in latestWorkout %}
 <li> {{workout.name}} </li>
 {% endfor %}
