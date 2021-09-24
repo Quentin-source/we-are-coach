@@ -28,7 +28,7 @@
             {% for user in users %}
                 <tr>
                     <td>{{ user.id }}</td>
-                    <td>{{ user.mail }}</td>
+                    <td>{{ user.email }}</td>
                     <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                     <td>{{ user.firstname }}</td>
                     <td>{{ user.lastname }}</td>
@@ -36,5 +36,6 @@
 
                 </tr>
             {% endfor %}
+            <a href="{{ path('backoffice_backoffice') }}">Retour à l'accueil</a>
 </div>
 {% endblock %}
