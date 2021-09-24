@@ -3,14 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -20,9 +20,25 @@ class User
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $password;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
-    private $user_pseudo;
+    private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -44,95 +60,123 @@ class User
      */
     private $age;
 
-
-
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $sport1;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $sport2;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $sport3;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $mail;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $picture;
-
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
-
-    /**
-     * @ORM\OneToMany(targetEntity=comment::class, mappedBy="user")
-     */
-    private $comment;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Workout::class, mappedBy="user")
-     */
-    private $Workout;
-
-    /**
-     * @ORM\OneToMany(targetEntity=rate::class, mappedBy="user")
-     */
-    private $Rate;
-
-
-    /**
-     * @ORM\OneToMany(targetEntity=favorite::class, mappedBy="user")
-     */
-    private $favorite;
-
-
-
-
-
-    public function __construct()
-    {
-        $this->comment = new ArrayCollection();
-        $this->Workout = new ArrayCollection();
-        $this->Rate = new ArrayCollection();
-        $this->favorite = new ArrayCollection();
-
-    }
+    private $sport3;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUserPseudo(): ?string
+    public function getEmail(): ?string
     {
-        return $this->user_pseudo;
+        return $this->email;
     }
 
-    public function setUserPseudo(string $user_pseudo): self
+    public function setEmail(string $email): self
     {
-        $this->user_pseudo = $user_pseudo;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getFirstame(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
     {
         return $this->firstname;
     }
@@ -180,8 +224,6 @@ class User
         return $this;
     }
 
-
-
     public function getSport1(): ?string
     {
         return $this->sport1;
@@ -194,232 +236,27 @@ class User
         return $this;
     }
 
-
     public function getSport2(): ?string
     {
         return $this->sport2;
     }
 
-    public function setSport2(string $sport2): self
+    public function setSport2(?string $sport2): self
     {
         $this->sport2 = $sport2;
 
         return $this;
     }
 
-
     public function getSport3(): ?string
     {
         return $this->sport3;
     }
 
-    public function setSport3(string $sport3): self
+    public function setSport3(?string $sport3): self
     {
         $this->sport3 = $sport3;
 
         return $this;
     }
-
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
-
-    public function setMail(string $mail): self
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(?string $picture): self
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-        /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        // On récupère les roles associés à l'utilisateur
-        // Pour demo2, $roles = [];
-        // Pour adrien, $roles = ["ROLE_ADMIN"];
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER'; // ["ROLE_ADMIN", "ROLE_USER"]
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|comment[]
-     */
-    public function getComment(): Collection
-    {
-        return $this->Comment;
-    }
-
-    public function addComment(comment $comment): self
-    {
-        if (!$this->comment->contains($comment)) {
-            $this->comment[] = $comment;
-            $comment->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeComment(comment $comment): self
-    {
-        if ($this->comment->removeElement($comment)) {
-            // set the owning side to null (unless already changed)
-            if ($comment->getUser() === $this) {
-                $comment->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|workout[]
-     */
-    public function getWorkout(): Collection
-    {
-        return $this->Workout;
-    }
-
-    public function addWorkout(workout $workout): self
-    {
-        if (!$this->Workout->contains($workout)) {
-            $this->Workout[] = $workout;
-            $workout->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeWorkout(workout $workout): self
-    {
-        if ($this->Workout->removeElement($workout)) {
-            // set the owning side to null (unless already changed)
-            if ($workout->getUser() === $this) {
-                $workout->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|rate[]
-     */
-    public function getRate(): Collection
-    {
-        return $this->Rate;
-    }
-
-    public function addRate(rate $rate): self
-    {
-        if (!$this->Rate->contains($rate)) {
-            $this->Rate[] = $rate;
-            $rate->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRate(rate $rate): self
-    {
-        if ($this->Rate->removeElement($rate)) {
-            // set the owning side to null (unless already changed)
-            if ($rate->getUser() === $this) {
-                $rate->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function setRate(Rate $rate): self
-    {
-        // set the owning side of the relation if necessary
-        if ($rate->getUser() !== $this) {
-            $rate->setUser($this);
-        }
-
-        $this->rate = $rate;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|favorite[]
-     */
-    public function getFavorite(): Collection
-    {
-        return $this->favorite;
-    }
-
-    public function addFavorite(favorite $favorite): self
-    {
-        if (!$this->favorite->contains($favorite)) {
-            $this->favorite[] = $favorite;
-            $favorite->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFavorite(favorite $favorite): self
-    {
-        if ($this->favorite->removeElement($favorite)) {
-            // set the owning side to null (unless already changed)
-            if ($favorite->getUser() === $this) {
-                $favorite->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function setFavorite(Favorite $favorite): self
-    {
-        // set the owning side of the relation if necessary
-        if ($favorite->getUser() !== $this) {
-            $favorite->setUser($this);
-        }
-
-        $this->favorite = $favorite;
-
-        return $this;
-    }
-
 }
