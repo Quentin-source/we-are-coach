@@ -1,12 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'backoffice/layout.html.twig' %}
 
 {% block title %}Hello CategorieController!{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block content %}
 
 <div class="example-wrapper">
     <h1>Hello ! ✅</h1>
@@ -20,11 +16,6 @@
                 <th>Lastname</th>
                 <th>Pseudo</th>
                 <th>Image</th>
-
-
-
-
-
             </tr>
         </thead>
         <tbody>
@@ -37,11 +28,12 @@
                     <td>{{ user.lastname }}</td>
                     <td>{{ user.pseudo }}</td>
                     <td><img src="{{user.picture}}" width="300"></td>
-                    
-
 
                 </tr>
             {% endfor %}
-            <a href="{{ path('backoffice_backoffice') }}">Retour à l'accueil</a>
+            <p>
+            <a href="{{ path('backoffice_index') }}">Retour à l'accueil</a>
+            </p>
+            </tbody>
 </div>
 {% endblock %}

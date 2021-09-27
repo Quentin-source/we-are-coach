@@ -119,7 +119,7 @@ class SportController extends AbstractController
         $em->flush();
 
         // Message flash
-        $this->addFlash('info', 'La catégorie ' . $sport->getName() . ' a bien été supprimée');
+        $this->addFlash('info', 'Le sport ' . $sport->getName() . ' a bien été supprimée');
 
         return $this->redirectToRoute('backoffice_sport_index');
     }

@@ -1,11 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'backoffice/layout.html.twig' %}
 
 {% block title %}Hello SportController!{% endblock %}
 
-{% block body %}
-<style>
-
-</style>
+{% block content %}
 
 <div class="example-wrapper">
     <h1>Liste des sports</h1>
@@ -20,6 +17,7 @@
         <p>
             <a href="{{ path('backoffice_sport_add') }}">Ajouter</a>
         </p>
-            <a href="{{ path('backoffice_backoffice') }}">Retour à l'accueil</a>
+            <a href="{{ path('backoffice_index') }}">Retour à l'accueil</a>
 </div>
+
 {% endblock %}
