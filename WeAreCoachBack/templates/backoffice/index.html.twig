@@ -1,22 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'backoffice/layout.html.twig' %}
 
 {% block title %}Hello Backoffice!{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block content %}
 
 <div class="example-wrapper">
     <h1>Bienvenue dans le Backoffice de We are coach !</h1>
-
-<ul>
-<li><a href="{{ path('backoffice_user_index') }}">Gérer les utilisateurs</a></li>
-<li><a href="{{ path('backoffice_workout_index') }}">Gérer les entrainements</a></li>
-<li><a href="{{ path('backoffice_category_index') }}">Gérer les catégories</a></li>
-<li><a href="{{ path('backoffice_sport_index') }}">Gérer les sports</a></li>
-<a href="{{ path('home') }}">Retour au côté front</a>
-</ul>
 </div>
 {% endblock %}
+
