@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -16,67 +17,80 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"user_list"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"user_list"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"user_list"})
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Groups({"user_list"})
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user_list"})
      */
     private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user_list"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user_list"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user_list"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"user_list"})
      */
     private $age;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user_list"})
      */
     private $sport1;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"user_list"})
      */
     private $sport2;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"user_list"})
      */
     private $sport3;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"user_list"})
      */
     private $picture;
 
