@@ -75,6 +75,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $sport3;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -256,6 +261,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setSport3(?string $sport3): self
     {
         $this->sport3 = $sport3;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }
