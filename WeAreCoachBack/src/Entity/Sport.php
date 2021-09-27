@@ -44,7 +44,11 @@ class Sport
     {
         $this->workout = new ArrayCollection();
     }
-
+    
+    public function __toString()
+    {
+        return $this->id . ' - ' . $this->name;
+    }
 
     public function getId(): ?int
     {
