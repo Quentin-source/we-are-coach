@@ -18,12 +18,14 @@ class Workout
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"latest_workout"})
+     * @Groups({"workout_list"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"latest_workout"})
+     * @Groups({"workout_list"})
      */
     private $name;
 
@@ -32,11 +34,13 @@ class Workout
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"latest_workout"})
+     * @Groups({"workout_list"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"workout_list"})
      */
     private $level;
 
@@ -44,32 +48,38 @@ class Workout
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"latest_workout"})
+     * @Groups({"workout_list"})
      */
     private $picture;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Groups({"workout_list"})
      */
     private $published_at;
 
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="workout")
+     * @Groups({"workout_list"})
      */
     private $comment;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Workout")
+     * @Groups({"workout_list"})
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Sport::class, inversedBy="workout")
+     * @Groups({"workout_list"})
      */
     private $sport;
 
     /**
      * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="workout")
+     * @Groups({"workout_list"})
      */
     private $rate;
 
@@ -77,6 +87,7 @@ class Workout
 
     /**
      * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="workout")
+     * @Groups({"workout_list"})
      */
     private $favorite;
 
