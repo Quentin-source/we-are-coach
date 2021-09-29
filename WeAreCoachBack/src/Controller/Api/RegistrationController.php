@@ -9,40 +9,30 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
     /**
-     * @Route("/api/user", name="api_user_")
+     * @Route("/api/registration", name="api_registration_")
      */
-class UserController extends AbstractController
+class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/", name="user", methods={"GET"})
-     */
-    public function index(UserRepository $userRepository): Response
-    {
-        $userList = $userRepository->findAll();
-
-        return $this->json($userList, 200, [], [
-            'groups' => 'user_list',
-        ]);
-    }
-
-    /**
      * 
-     * @Route("/", name="add", methods={"POST"})
+     * @Route("/", name="user", methods={"POST"})
      *
      * @return void
      */
-    public function add(Request $request, SerializerInterface $serialiser)
+    public function add(Request $request, SerializerInterface $serialiser,UserPasswordHasherInterface $passwordHasher)
     {
-        // 1) On récupère le JSON
+
         $jsonData = $request->getContent();
 
-        // 2) On transforme le json en objet : désérialisation
-        // - On indique les données à transformer (désérialiser)
-        // - On indique le format d'arrivé après conversion (objet de type TvShow)
-        // - On indique le format de départ : on veut passer de json vers un objet TvShow
         $user = $serialiser->deserialize($jsonData, User::class, 'json');
+
+        $user->setPassword(
+            password_hash('password', PASSWORD_DEFAULT)
+            );
 
 
         // Pour sauvegarder, on appelle le manager
