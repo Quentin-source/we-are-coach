@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RateRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=RateRepository::class)
@@ -14,16 +15,19 @@ class Rate
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"workout_list"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"workout_list"})
      */
     private $rate;
 
     /**
      * @ORM\ManyToOne(targetEntity=Workout::class, inversedBy="rate")
+     * 
      */
     private $workout;
 

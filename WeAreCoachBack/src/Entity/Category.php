@@ -18,12 +18,14 @@ class Category
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"category_list"})
+     * @Groups({"workout_list"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"category_list"})
+     * @Groups({"workout_list"})
      */
     private $name;
 
@@ -41,6 +43,7 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity=Sport::class, mappedBy="category")
+     * @Groups({"category_list"})
      */
     private $Sport;
 

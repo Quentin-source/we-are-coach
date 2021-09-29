@@ -18,6 +18,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"user_list"})
+     * @Groups({"workout_list"})
      */
     private $id;
 
@@ -43,6 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_list"})
+     * @Groups({"workout_list"})
      */
     private $pseudo;
 
