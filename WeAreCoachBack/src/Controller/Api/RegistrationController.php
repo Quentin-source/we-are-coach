@@ -31,7 +31,7 @@ class RegistrationController extends AbstractController
         $user = $serialiser->deserialize($jsonData, User::class, 'json');
 
         $user->setPassword(
-            password_hash('password', PASSWORD_DEFAULT)
+            $passwordHasher->hashPassword($user,$user->getPassword())
             );
 
 
