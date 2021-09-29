@@ -15,11 +15,13 @@ class Favorite
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * 
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
      */
     private $name;
 
@@ -30,6 +32,7 @@ class Favorite
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="favorite")
+     * 
      */
     private $user;
 

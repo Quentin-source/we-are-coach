@@ -29,30 +29,26 @@ class UserController extends AbstractController
 
     /**
      * 
-     * @Route("/", name="add", methods={"POST"})
+     * @Route("/{id}", name="show", methods={"GET"})
      *
-     * @return void
+     * @return JsonResponse
      */
-    public function add(Request $request, SerializerInterface $serialiser)
+    public function show(int $id, UserRepository $userRepository)
     {
-        // 1) On récupère le JSON
-        $jsonData = $request->getContent();
+        // On récupère une série en fonction de son id
+        $user = $userRepository->find($id);
 
-        // 2) On transforme le json en objet : désérialisation
-        // - On indique les données à transformer (désérialiser)
-        // - On indique le format d'arrivé après conversion (objet de type TvShow)
-        // - On indique le format de départ : on veut passer de json vers un objet TvShow
-        $user = $serialiser->deserialize($jsonData, User::class, 'json');
+        // Si la série n'existe pas, on retourne une erreur 404
+        if (!$user) {
+            return $this->json([
+                'error' => 'L\'utilisateur ' . $id . ' n\'existe pas'
+            ], 404);
+        }
 
-
-        // Pour sauvegarder, on appelle le manager
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
-
-        // On retourne une réponse en indiquant que la ressource
-        // a bien été créée (code http 201)
-        return $this->json($user, 201);
+        // On retourne le résultat au format JSON
+        return $this->json($user, 200, [], [
+            'groups' => 'user_detail'
+        ]);
     }
 
 
