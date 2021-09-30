@@ -6,7 +6,7 @@
 
     <h2>Ajout d'un Sport</h2>
 
-    {{ form_start(formView, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{form_start(formView)}}
     {{ form_row(formView.name) }}
     <button class="btn btn-primary">Valider</button>
     {{ form_end(formView) }}

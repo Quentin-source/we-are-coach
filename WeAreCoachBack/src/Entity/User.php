@@ -18,81 +18,81 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"user_list"})
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail","user_detail"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"user_list"})
+     * @Groups({"user_list","user_detail"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"user_list"})
+     * @Groups({"user_list","user_detail"})
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Groups({"user_list"})
+     * @Groups({"user_list","user_detail"})
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_list"})
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail","user_detail"})
      */
     private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user_list"})
+     * @Groups({"user_list","user_detail"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user_list"})
+     * @Groups({"user_list","user_detail"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user_list"})
+     * @Groups({"user_list","user_detail"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"user_list"})
+     * @Groups({"user_list","user_detail"})
      */
     private $age;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user_list"})
+     * @Groups({"user_list","user_detail"})
      */
     private $sport1;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user_list"})
+     * @Groups({"user_list","user_detail"})
      */
     private $sport2;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user_list"})
+     * @Groups({"user_list","user_detail"})
      */
     private $sport3;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user_list"})
+     * @Groups({"user_list","user_detail"})
      */
     private $picture;
 

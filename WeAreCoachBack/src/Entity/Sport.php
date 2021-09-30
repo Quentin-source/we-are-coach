@@ -17,13 +17,13 @@ class Sport
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail"})
      */
     private $name;
 
@@ -35,11 +35,13 @@ class Sport
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="Sport")
+     * @Groups({"workout_list"})
      */
     private $category;
 
     /**
      * @ORM\OneToMany(targetEntity=Workout::class, mappedBy="sport")
+     * 
      */
     private $workout;
 
@@ -96,14 +98,15 @@ class Sport
     }
 
     /**
-     * @return Collection|workout[]
+     * @return Collection|Workout[]
      */
-    public function getWorkout(): Collection
-    {
-        return $this->Workout;
-    }
 
-    public function addWorkout(workout $workout): self
+    // public function getWorkout(): Collection
+    // {
+    //     return $this->Workout;
+    // }
+
+    public function addWorkout(Workout $workout): self
     {
         if (!$this->workout->contains($workout)) {
             $this->workout[] = $workout;
@@ -113,7 +116,7 @@ class Sport
         return $this;
     }
 
-    public function removeWorkout(workout $workout): self
+    public function removeWorkout(Workout $workout): self
     {
         if ($this->workout->removeElement($workout)) {
             // set the owning side to null (unless already changed)

@@ -15,13 +15,13 @@ class Rate
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail"})
      */
     private $rate;
 
@@ -33,6 +33,7 @@ class Rate
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Rate")
+     * 
      */
     private $user;
 

@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+
+
 /**
  * @ORM\Entity(repositoryClass=WorkoutRepository::class)
  */
@@ -18,14 +20,14 @@ class Workout
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"latest_workout"})
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"latest_workout"})
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail"})
      */
     private $name;
 
@@ -34,13 +36,13 @@ class Workout
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"latest_workout"})
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail"})
      */
     private $level;
 
@@ -48,38 +50,38 @@ class Workout
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"latest_workout"})
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail"})
      */
     private $picture;
 
     /**
      * @ORM\Column(type="datetime_immutable")
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail"})
      */
     private $published_at;
 
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="workout")
-     * @Groups({"workout_list"})
+     * @Groups({"workout_detail"})
      */
     private $comment;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Workout")
-     * @Groups({"workout_list"})
+     * @Groups({"workout_detail"})
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Sport::class, inversedBy="workout")
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail"})
      */
     private $sport;
 
     /**
      * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="workout")
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail"})
      */
     private $rate;
 
@@ -87,7 +89,7 @@ class Workout
 
     /**
      * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="workout")
-     * @Groups({"workout_list"})
+     * 
      */
     private $favorite;
 
