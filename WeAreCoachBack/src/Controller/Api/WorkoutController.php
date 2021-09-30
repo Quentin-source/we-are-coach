@@ -10,10 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 use App\Entity\Workout;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-
-
-    /**
+/**
      * @Route("/api/workout", name="api_workout_")
      */
 class WorkoutController extends AbstractController
@@ -33,6 +32,7 @@ class WorkoutController extends AbstractController
     /**
      * 
      * @Route("/{id}", name="show", methods={"GET"})
+     * 
      *
      * @return JsonResponse
      */
@@ -54,27 +54,27 @@ class WorkoutController extends AbstractController
         ]);
     }
 
-        /**
+    /**
      * 
-     * @Route("/add", name="user", methods={"POST"})
+     * @Route("/add", name="add", methods={"POST"})
+     * 
      *
      * @return void
      */
     public function add( Request $request, SerializerInterface $serialiser)
     {
         
-
         $jsonData = $request->getContent();
 
         $workout = $serialiser->deserialize($jsonData, Workout::class, 'json');
-
-        // $sport->addWorkout($workout);
-
+     
         $em = $this->getDoctrine()->getManager();
         $em->persist($workout);
         $em->flush();
 
-        return $this->json($workout, 201);
+        return $this->json($workout, 200, [], [ObjectNormalizer::CIRCULAR_REFERENCE_HANDLER=> function($object){
+            return $object->getName();
+        }]);
     }
 
 }

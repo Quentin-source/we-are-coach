@@ -45,5 +45,7 @@ class RegistrationController extends AbstractController
         return $this->json($user, 201);
     }
 
+    
+
 
 }

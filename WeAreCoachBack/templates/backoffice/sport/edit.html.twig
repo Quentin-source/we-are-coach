@@ -5,8 +5,6 @@
 {% block content %}
     
     <h2>Edition d'un Sport</h2>
-    <!-- https://symfony.com/doc/current/forms.html#client-side-html-validation -->
-    <!-- Nous gènère un formulair de ce type : <form action="" novalidate="novalidate"></form> -->
     {{ form_start(formView, {'attr': {'novalidate': 'novalidate'}}) }}
     {{ form_row(formView.name, {'attr': {'class':'geronimo'}}) }}
     <button class="btn btn-primary">Valider</button>

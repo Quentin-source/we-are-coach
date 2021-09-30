@@ -35,17 +35,15 @@ class UserController extends AbstractController
      */
     public function show(int $id, UserRepository $userRepository)
     {
-        // On récupère une série en fonction de son id
+ 
         $user = $userRepository->find($id);
 
-        // Si la série n'existe pas, on retourne une erreur 404
         if (!$user) {
             return $this->json([
                 'error' => 'L\'utilisateur ' . $id . ' n\'existe pas'
             ], 404);
         }
 
-        // On retourne le résultat au format JSON
         return $this->json($user, 200, [], [
             'groups' => 'user_detail'
         ]);

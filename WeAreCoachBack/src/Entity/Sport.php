@@ -98,14 +98,15 @@ class Sport
     }
 
     /**
-     * @return Collection|workout[]
+     * @return Collection|Workout[]
      */
-    public function getWorkout(): Collection
-    {
-        return $this->Workout;
-    }
 
-    public function addWorkout(workout $workout): self
+    // public function getWorkout(): Collection
+    // {
+    //     return $this->Workout;
+    // }
+
+    public function addWorkout(Workout $workout): self
     {
         if (!$this->workout->contains($workout)) {
             $this->workout[] = $workout;
@@ -115,7 +116,7 @@ class Sport
         return $this;
     }
 
-    public function removeWorkout(workout $workout): self
+    public function removeWorkout(Workout $workout): self
     {
         if ($this->workout->removeElement($workout)) {
             // set the owning side to null (unless already changed)

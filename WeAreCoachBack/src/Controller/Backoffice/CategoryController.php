@@ -7,6 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
+use Symfony\Component\HttpFoundation\Request;
+use App\Service\ImageUploader;
+use App\Form\CategoryType;
 
     /**
      * @Route("/backoffice/category", name="backoffice_category_")
@@ -15,8 +18,8 @@ use App\Repository\CategoryRepository;
 class CategoryController extends AbstractController
 {
     /**
-     * Show all categories from Admin 
-     * 
+     * Show all categories from Admin
+     *
      * @Route("/", name="index")
      */
     public function index(CategoryRepository $categoryRepository): Response
@@ -25,5 +28,4 @@ class CategoryController extends AbstractController
             'categories' => $categoryRepository->findAll(),
         ]);
     }
-
 }
