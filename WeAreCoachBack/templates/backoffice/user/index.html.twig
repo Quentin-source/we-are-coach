@@ -1,39 +1,23 @@
 {% extends 'backoffice/layout.html.twig' %}
 
-{% block title %}Hello CategorieController!{% endblock %}
+{% block title %}Hello UserController!{% endblock %}
 
 {% block content %}
 
 <div class="example-wrapper">
-    <h1>Hello ! ✅</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Pseudo</th>
-                <th>Image</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in users %}
-                <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                    <td>{{ user.firstname }}</td>
-                    <td>{{ user.lastname }}</td>
-                    <td>{{ user.pseudo }}</td>
-                    <td><img src="{{user.picture}}" width="300"></td>
+    <h1>Liste des utilisateurs</h1>
 
-                </tr>
+            {% for user in users %}
+                <li>
+                    <a href="{{ path('backoffice_user_show', {id:user.id}) }}">
+                        {{ user.pseudo }}
+
+                </li>
             {% endfor %}
-            <p>
+        <p>
+            <a href="{{ path('backoffice_user_add') }}">Ajouter</a>
+        </p>
             <a href="{{ path('backoffice_index') }}">Retour à l'accueil</a>
-            </p>
-            </tbody>
 </div>
+
 {% endblock %}

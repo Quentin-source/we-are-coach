@@ -1,10 +1,10 @@
 {% extends 'backoffice/layout.html.twig' %}
 
-{% block title %}Ajouter une catégorie{% endblock %}
+{% block title %}Ajouter un utilisateur{% endblock %}
 
 {% block content %}
     
-    <h2>Edition d'une catégorie</h2>
+    <h2>Edition d'un utilisateur</h2>
     <!-- https://symfony.com/doc/current/forms.html#client-side-html-validation -->
     <!-- Nous gènère un formulair de ce type : <form action="" novalidate="novalidate"></form> -->
     {{ form_start(formView, {'attr': {'novalidate': 'novalidate'}}) }}
@@ -13,7 +13,7 @@
     {{ form_end(formView) }}
 
     <p>
-        <a href="{{ path('backoffice_category_index') }}">Retour à la liste</a>
+        <a href="{{ path('backoffice_user_index') }}">Retour à la liste</a>
     </p>
 
     {% endblock %}

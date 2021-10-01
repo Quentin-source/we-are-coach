@@ -1,0 +1,51 @@
+{% extends 'backoffice/layout.html.twig' %}
+
+{% block title %}utilisateur{% endblock %}
+
+{% block content %}
+    <h1>utilisateur</h1>
+
+        <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user_show.id }}</td>
+            </tr>
+            <tr>
+                <th>Lastame</th>
+                <td>{{ user_show.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Firstame</th>
+                <td>{{ user_show.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ user_show.pseudo }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ user_show.city }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ user_show.age }}</td>
+            </tr>
+            <tr>
+                <th>Sport</th>
+                <td>{{ user_show.sport1 }}</td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td>{{ user_show.picture }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('backoffice_user_index') }}">back to list</a>
+
+    <a href="{{ path('backoffice_user_edit', {id:user_show.id}) }}">edit</a>
+
+    {{ include('backoffice/user/_delete_form.html.twig') }}
+{% endblock %}
