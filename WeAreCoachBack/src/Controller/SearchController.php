@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     /**
-     * @Route("/search", name="search")
+     * @Route("api/search", name="search")
      */
     public function index(Request $request, WorkoutRepository $workoutRepository): Response
     {
