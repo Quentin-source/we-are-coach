@@ -22,7 +22,9 @@ class SearchController extends AbstractController
         $resultsSport = $sportRepository->searchSportByName($query);
 
         return $this->json(['workouts' => $resultsWorkout, 'sports' => $resultsSport], Response::HTTP_OK, [], [
-            'groups' => 'workout_detail','sport_detail'
+            'groups' => ['workout_detail','sport_detail']
+          
+          
         ]);
     }
 
