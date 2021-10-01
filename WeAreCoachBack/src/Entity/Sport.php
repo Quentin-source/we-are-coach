@@ -17,31 +17,31 @@ class Sport
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"workout_list","workout_detail"})
+     * @Groups({"workout_list","workout_detail","sport_detail"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"workout_list","workout_detail"})
+     * @Groups({"workout_list","workout_detail","sport_detail"})
      */
     private $name;
 
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"sport_detail"})
      */
     private $picture;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="Sport")
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","sport_detail"})
      */
     private $category;
 
     /**
      * @ORM\OneToMany(targetEntity=Workout::class, mappedBy="sport")
-     * 
      */
     private $workout;
 
