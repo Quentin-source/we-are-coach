@@ -50,7 +50,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user_list","user_detail"})
+     * @Groups({"user_list","user_detail", "comment_detail"})
      */
     private $firstname;
 
