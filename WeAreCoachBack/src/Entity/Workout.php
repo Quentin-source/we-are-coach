@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use DateTimeImmutable;
 
 
 
@@ -100,6 +101,8 @@ class Workout
         $this->comment = new ArrayCollection();
         $this->rate = new ArrayCollection();
         $this->favorite = new ArrayCollection();
+
+        $this->published_at = new DateTimeImmutable();
     }
 
 

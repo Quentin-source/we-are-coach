@@ -1,0 +1,40 @@
+{% extends 'backoffice/layout.html.twig' %}
+
+{% block title %}Entrainement{% endblock %}
+
+{% block content %}
+    <h1>{{ workout_show.name }}</h1>
+
+        <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ workout_show.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ workout_show.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ workout_show.description }}</td>
+            </tr>
+            <tr>
+                <th>Niveau de difficulté</th>
+                <td>{{ workout_show.level }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ workout_show.picture }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+<p>
+    <a href="{{ path('backoffice_workout_index') }}">retour à la liste des entrainements</a>
+</p>
+<p>
+    <a href="{{ path('backoffice_workout_edit', {id:workout_show.id}) }}">modifier</a>
+</p>
+    {{ include('backoffice/workout/_delete_form.html.twig') }}
+{% endblock %}
