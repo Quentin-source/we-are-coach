@@ -12,14 +12,11 @@ use App\Entity\User;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 
-    /**
-     * @Route("/api/registration", name="api_registration_")
-     */
 class RegistrationController extends AbstractController
 {
     /**
      * 
-     * @Route("/", name="user", methods={"POST"})
+     * @Route("api/registration", name="api_registration", methods={"POST"})
      *
      * @return void
      */

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\WorkoutRepository;
+use App\Repository\SportRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,14 +14,19 @@ class SearchController extends AbstractController
     /**
      * @Route("api/search", name="search")
      */
-    public function index(Request $request, WorkoutRepository $workoutRepository): Response
+    public function workout(Request $request, WorkoutRepository $workoutRepository, SportRepository $sportRepository): Response
     {
         $query = $request->query->get('search');
 
-        $results = $workoutRepository->searchWorkoutByName($query);
+        $resultsWorkout = $workoutRepository->searchWorkoutByName($query);
+        $resultsSport = $sportRepository->searchSportByName($query);
 
-        return $this->json(['workouts' => $results], Response::HTTP_OK, [], [
-            'groups' => 'latest_workout'
+        return $this->json(['workouts' => $resultsWorkout, 'sports' => $resultsSport], Response::HTTP_OK, [], [
+            'groups' => ['workout_detail','sport_detail']
+          
+          
         ]);
     }
+
+
 }

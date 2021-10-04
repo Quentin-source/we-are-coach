@@ -18,6 +18,7 @@ class Sport
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"workout_list","workout_detail","sport_list","sport_detail"})
+
      */
     private $id;
 
@@ -30,6 +31,7 @@ class Sport
 
     /**
      * @ORM\Column(type="string", length=255)
+
      * @Groups({"sport_list","sport_detail"})
      */
     private $picture;

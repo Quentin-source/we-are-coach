@@ -19,6 +19,15 @@ class SportRepository extends ServiceEntityRepository
         parent::__construct($registry, Sport::class);
     }
 
+    public function searchSportByName($name)
+    {
+        return $this->createQueryBuilder('sport')
+        ->where('sport.name LIKE :name')
+        ->setParameter(':name', "%$name%")
+        ->getQuery()
+        ->getResult();
+    }
+
     // /**
     //  * @return Sport[] Returns an array of Sport objects
     //  */
