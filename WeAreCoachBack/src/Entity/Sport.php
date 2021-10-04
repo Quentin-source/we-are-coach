@@ -30,7 +30,7 @@ class Sport
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"sport_detail,"sport_list"})
+     * @Groups({"sport_list","sport_detail"})
      */
     private $picture;
 
