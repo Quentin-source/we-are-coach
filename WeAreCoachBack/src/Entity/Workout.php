@@ -20,7 +20,7 @@ class Workout
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"latest_workout"})
-     * @Groups({"workout_list","workout_detail"})
+     * @Groups({"workout_list","workout_detail","comment_add"})
      */
     private $id;
 

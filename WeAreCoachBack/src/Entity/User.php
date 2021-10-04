@@ -18,7 +18,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"user_list"})
-     * @Groups({"workout_list","workout_detail","user_detail"})
+     * @Groups({"workout_list","workout_detail","user_detail","comment_add"})
      */
     private $id;
 

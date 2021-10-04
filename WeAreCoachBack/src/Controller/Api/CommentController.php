@@ -73,8 +73,8 @@ class CommentController extends AbstractController
         $em->persist($comment);
         $em->flush();
 
-        return $this->json($comment, 200, [], [ObjectNormalizer::CIRCULAR_REFERENCE_HANDLER=> function($object){
-            return $object->getName();
-        }]);
-    } 
+        return $this->json($comment, 200, [], [
+            'groups' => 'comment_detail'
+        ]);
+}
 }
