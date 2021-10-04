@@ -15,24 +15,25 @@ class Favorite
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * 
-     * 
+     * @Groups({"favorite_list","favorite_detail"}) 
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
+     * @Groups({"favorite_list","favorite_detail"})
      */
     private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity=Workout::class, inversedBy="favorite")
+     * @Groups({"favorite_list","favorite_detail"})
      */
     private $workout;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="favorite")
+     * @Groups({"favorite_list","favorite_detail"})
      * 
      */
     private $user;
