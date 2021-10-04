@@ -42,7 +42,6 @@ class Sport
 
     /**
      * @ORM\OneToMany(targetEntity=Workout::class, mappedBy="sport")
-     * @Groups({"workout_list","sport_list","sport_detail"})
      */
     private $workout;
 
