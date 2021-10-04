@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  */
@@ -93,7 +94,7 @@ class Category
 
     public function setDescription(string $description): self
     {
-        $this->pictudescriptionre = $description;
+        $this->description = $description;
 
         return $this;
     }

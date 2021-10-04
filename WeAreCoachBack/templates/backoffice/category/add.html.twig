@@ -1,10 +1,10 @@
 {% extends 'backoffice/layout.html.twig' %}
 
-{% block title %}Ajouter un Sport{% endblock %}
+{% block title %}Ajouter une catégorie{% endblock %}
 
 {% block content %}
 
-    <h2>Ajout d'un Sport</h2>
+    <h2>Ajout d'une catégorie</h2>
 
     {{form_start(formView)}}
     {{ form_row(formView.name) }}
@@ -13,7 +13,7 @@
     {{ form_end(formView) }}
 
     <p>
-        <a href="{{ path('backoffice_sport_index') }}">Retour à la liste</a>
+        <a href="{{ path('backoffice_category_index') }}">Retour à la liste</a>
     </p>
 
 {% endblock %}

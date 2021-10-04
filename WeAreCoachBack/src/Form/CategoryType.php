@@ -2,29 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Workout;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 
-class WorkoutType extends AbstractType
+class CategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', null,[
-                'label' => 'Nom de l\'entrainement',
-                'attr' => ['placeholder' => 'Saisir un nom d\'entrainement']
+                'label' => 'Nom de la catégorie',
+                'attr' => ['placeholder' => 'Saisir un nom de catégorie']
             ])
             ->add('description', null,[
                 'label' => 'La description',
                 'attr' => ['placeholder' => 'Saisir une description']
-            ])
-            ->add('level', null,[
-                'label' => 'level',
-                'attr' => ['placeholder' => 'Saisir un niveau de difficulté']
             ])
             ->add('picture', FileType::class, [
                 'label' => 'Choisir une image',
@@ -56,7 +52,7 @@ class WorkoutType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Workout::class,
+            'data_class' => Category::class,
         ]);
     }
 }

@@ -1,12 +1,12 @@
 {% extends 'backoffice/layout.html.twig' %}
 
-{% block title %}Hello{% endblock %}
+{% block title %}Catégories{% endblock %}
 
 {% block content %}
 
 <div class="example-wrapper">
     <h1>Liste des catégories</h1>
-
+<p>
             {% for category in categories %}
                 <li>
                     <a href="{{ path('backoffice_category_show', {id:category.id}) }}">
@@ -14,6 +14,7 @@
 
                 </li>
             {% endfor %}
+            </p>
         <p>
             <a href="{{ path('backoffice_category_add') }}">Ajouter</a>
         </p>
