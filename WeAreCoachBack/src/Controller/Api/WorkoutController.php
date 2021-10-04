@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 use App\Entity\Workout;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
 /**
      * @Route("/api/workout", name="api_workout_")
@@ -76,5 +77,81 @@ class WorkoutController extends AbstractController
             return $object->getName();
         }]);
     }
+
+        /**
+     * Mise à jour d'une série en fonction de son Identifiant
+     * 
+     * @Route("/{id}", name="update", methods={"PUT", "PATCH"})
+     *
+     * @return void
+     */
+    public function update(int $id, WorkoutRepository $workoutRepository, Request $request, SerializerInterface $serialiser)
+    {
+        // On récupère les données reçues au format JSON
+        $jsonData = $request->getContent();
+
+        // On récupère la série dont l'ID est $id
+        $workout = $workoutRepository->find($id);
+
+        if (!$workout) {
+            // Si la série à mettre à jour n'existe pas
+            // on retourne un message d'erreur (400::bad request ou 404:: not found)
+            return $this->json(
+                [
+                    'errors' => [
+                        'message' => 'L\'entrainement ' . $id . ' n\'existe pas'
+                    ]
+                ],
+                404
+            );
+        }
+
+        // On fusionne les données de la série avec les données
+        // issue de l'application Front (insomnia, react, ...)
+        // Deserializing in an Existing Object : https://symfony.com/doc/current/components/serializer.html#deserializing-in-an-existing-object
+        // On demande au serializer de transformer les données JSON($jsonData)
+        // en objet de classe TvShow, tout en fusionnant ces données avec
+        // l'objet existant $tvShow
+
+        $serialiser->deserialize($jsonData, Workout::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $workout]);
+
+        // On appelle le manager pour effectuer la mise à jour en BDD
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+
+        return $this->json([
+            'message' => 'L\'entrainement ' . $workout->getName() . ' a bien été mise à jour'
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="delete", methods={"DELETE"})
+     *
+     * @return JsonResponse
+     */
+    public function delete(int $id, WorkoutRepository $workoutRepository)
+    {
+        $workout = $workoutRepository->find($id);
+
+        if (!$workout) {
+            // La série n'existe pas
+            return $this->json(
+                [
+                    'errors' => ['message' => 'L\'entrainement ' . $id . ' n\'existe pas']
+                ],
+                404
+            );
+        }
+
+        // On appelle le manager pour gérer la suppresion de la série
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($workout);
+        $em->flush();
+
+        return $this->json([
+            'message' => 'L\'entrainement ' . $id . ' a bien été supprimée'
+        ]);
+    }
+
 
 }
