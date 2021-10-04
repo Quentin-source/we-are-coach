@@ -16,6 +16,7 @@ class Favorite
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * 
+     * 
      */
     private $id;
 
