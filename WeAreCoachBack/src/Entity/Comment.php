@@ -15,19 +15,20 @@ class Comment
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"workout_detail"})
+     * @Groups({"workout_detail","comment_list","comment_detail"})
      */
     private $id;
 
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"workout_detail"})
+     * @Groups({"workout_detail", "comment_list","comment_detail"})
      */
     private $comment;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Groups({"workout_detail", "comment_list","comment_detail"})
      * 
      */
     private $published_at;
@@ -39,7 +40,7 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comment")
-     * @Groups({"workout_detail"})
+     * @Groups({"workout_detail","comment_detail"})
      */
     private $user;
 
