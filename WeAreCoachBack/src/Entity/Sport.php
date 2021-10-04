@@ -30,13 +30,13 @@ class Sport
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"sport_detail,"sport_list""})
+     * @Groups({"sport_detail,"sport_list"})
      */
     private $picture;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="Sport")
-     * @Groups({"workout_list","sport_detail"})
+     * @Groups({"workout_list","sport_detail","sport_list"})
      */
     private $category;
 
