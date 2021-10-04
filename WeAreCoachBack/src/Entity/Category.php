@@ -17,33 +17,33 @@ class Category
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"category_list","workout_list","sport_detail"})
+     * @Groups({"category_list","workout_list","sport_detail","category_detail"})
      * 
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"category_list","workout_list","sport_detail"})
+     * @Groups({"category_list","workout_list","sport_detail","category_detail"})
      * 
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"category_list","sport_detail"})
+     * @Groups({"category_list","sport_detail","category_detail"})
      */
     private $picture;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"category_list","sport_detail"})
+     * @Groups({"category_list","sport_detail","category_detail"})
      */
     private $description;
 
     /**
      * @ORM\OneToMany(targetEntity=Sport::class, mappedBy="category")
-     * @Groups({"category_list"})
+     * @Groups({"category_list","category_detail"})
      */
     private $Sport;
 

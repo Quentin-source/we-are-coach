@@ -17,20 +17,20 @@ class Sport
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"workout_list","workout_detail","sport_detail"})
+     * @Groups({"workout_list","workout_detail","sport_detail","sport_list"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"workout_list","workout_detail","sport_detail"})
+     * @Groups({"workout_list","workout_detail","sport_detail","sport_list"})
      */
     private $name;
 
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"sport_detail"})
+     * @Groups({"sport_detail,"sport_list""})
      */
     private $picture;
 
@@ -41,6 +41,7 @@ class Sport
     private $category;
 
     /**
+     * @Groups({"workout_list","sport_list","sport_detail"})
      * @ORM\OneToMany(targetEntity=Workout::class, mappedBy="sport")
      */
     private $workout;
