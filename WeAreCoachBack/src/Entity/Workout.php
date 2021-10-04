@@ -20,14 +20,14 @@ class Workout
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"latest_workout"})
-     * @Groups({"workout_list","workout_detail","comment_add"})
+     * @Groups({"workout_list","workout_detail","comment_add","favorite_list","favorite_detail"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"latest_workout"})
-     * @Groups({"workout_list","workout_detail"})
+     * @Groups({"workout_list","workout_detail","favorite_list","favorite_detail"})
      */
     private $name;
 

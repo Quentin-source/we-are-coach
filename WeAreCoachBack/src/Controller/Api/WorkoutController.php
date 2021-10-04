@@ -78,9 +78,8 @@ class WorkoutController extends AbstractController
         }]);
     }
 
-        /**
-     * Mise à jour d'une série en fonction de son Identifiant
-     * 
+    /**
+     *  
      * @Route("/{id}", name="update", methods={"PUT", "PATCH"})
      *
      * @return void

@@ -18,7 +18,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"user_list"})
-     * @Groups({"workout_list","workout_detail","user_detail","comment_add"})
+     * @Groups({"workout_list","workout_detail","user_detail","comment_add","favorite_list","favorite_detail"})
      */
     private $id;
 
@@ -44,7 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_list"})
-     * @Groups({"workout_list","workout_detail","user_detail"})
+     * @Groups({"workout_list","workout_detail","user_detail","favorite_list","favorite_detail"})
      */
     private $pseudo;
 
