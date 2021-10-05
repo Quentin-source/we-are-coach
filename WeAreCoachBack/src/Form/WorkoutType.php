@@ -15,15 +15,15 @@ class WorkoutType extends AbstractType
     {
         $builder
             ->add('name', null,[
-                'label' => 'Nom de l\'entrainement',
-                'attr' => ['placeholder' => 'Saisir un nom d\'entrainement']
+                'label' => 'Nom de l\'entraînement',
+                'attr' => ['placeholder' => 'Saisir un nom d\'entraînement']
             ])
             ->add('description', null,[
                 'label' => 'La description',
                 'attr' => ['placeholder' => 'Saisir une description']
             ])
             ->add('level', null,[
-                'label' => 'level',
+                'label' => 'Niveau de difficulté',
                 'attr' => ['placeholder' => 'Saisir un niveau de difficulté']
             ])
             ->add('picture', FileType::class, [

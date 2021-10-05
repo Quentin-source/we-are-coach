@@ -38,7 +38,7 @@ class WorkoutController extends AbstractController
         $workout = $workoutRepository->find($id);
 
         if (!$workout) {
-            throw $this->createNotFoundException("Le workout dont l'id est $id n'existe pas");
+            throw $this->createNotFoundException("L'entraînement dont l'id est $id n'existe pas");
         }
 
         return $this->render('backoffice/workout/show.html.twig', [
@@ -66,7 +66,7 @@ class WorkoutController extends AbstractController
             $em->persist($workout);
             $em->flush();
 
-            $this->addFlash('success', 'Le workout ' . $workout->getName() . ' a bien été créé');
+            $this->addFlash('success', 'L\'entraînement ' . $workout->getName() . ' a bien été créé');
 
             return $this->redirectToRoute('backoffice_workout_index');
         }
@@ -93,7 +93,7 @@ class WorkoutController extends AbstractController
             $em->persist($workout);
             $em->flush();
 
-            $this->addFlash('success', 'Le workout ' . $workout->getName() . ' a bien été modifiée');
+            $this->addFlash('success', 'L\'entraînement ' . $workout->getName() . ' a bien été modifié');
 
             return $this->redirectToRoute('backoffice_workout_index');
         }
@@ -117,7 +117,7 @@ class WorkoutController extends AbstractController
         $em->flush();
 
         // Message flash
-        $this->addFlash('info', 'Le workout ' . $workout->getName() . ' a bien été supprimée');
+        $this->addFlash('info', 'L\'entraînement ' . $workout->getName() . ' a bien été supprimé');
 
         return $this->redirectToRoute('backoffice_workout_index');
     }

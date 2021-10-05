@@ -38,7 +38,7 @@ class CategoryController extends AbstractController
         $category = $categoryRepository->find($id);
 
         if (!$category) {
-            throw $this->createNotFoundException("Le category dont l'id est $id n'existe pas");
+            throw $this->createNotFoundException("La catégorie dont l'id est $id n'existe pas");
         }
 
         return $this->render('backoffice/category/show.html.twig', [
@@ -66,7 +66,7 @@ class CategoryController extends AbstractController
             $em->persist($category);
             $em->flush();
 
-            $this->addFlash('success', 'Le category ' . $category->getName() . ' a bien été créé');
+            $this->addFlash('success', 'La catégorie ' . $category->getName() . ' a bien été créé');
 
             return $this->redirectToRoute('backoffice_category_index');
         }
@@ -93,7 +93,7 @@ class CategoryController extends AbstractController
             $em->persist($category);
             $em->flush();
 
-            $this->addFlash('success', 'Le category ' . $category->getName() . ' a bien été modifiée');
+            $this->addFlash('success', 'La catégorie ' . $category->getName() . ' a bien été modifiée');
 
             return $this->redirectToRoute('backoffice_category_index');
         }
@@ -117,7 +117,7 @@ class CategoryController extends AbstractController
         $em->flush();
 
         // Message flash
-        $this->addFlash('info', 'Le category ' . $category->getName() . ' a bien été supprimée');
+        $this->addFlash('info', 'La catégorie ' . $category->getName() . ' a bien été supprimée');
 
         return $this->redirectToRoute('backoffice_category_index');
     }

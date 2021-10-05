@@ -1,6 +1,6 @@
 {% extends 'backoffice/layout.html.twig' %}
 
-{% block title %}Entrainement{% endblock %}
+{% block title %}Entraînement{% endblock %}
 
 {% block content %}
     <h1>{{ workout_show.name }}</h1>
@@ -31,7 +31,7 @@
         </tbody>
     </table>
 <p>
-    <a href="{{ path('backoffice_workout_index') }}">retour à la liste des entrainements</a>
+    <a href="{{ path('backoffice_workout_index') }}">retour à la liste des entraînements</a>
 </p>
 <p>
     <a href="{{ path('backoffice_workout_edit', {id:workout_show.id}) }}">modifier</a>
