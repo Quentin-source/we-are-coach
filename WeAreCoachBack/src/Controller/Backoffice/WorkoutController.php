@@ -4,6 +4,7 @@ namespace App\Controller\Backoffice;
 
 use App\Entity\Workout;
 use App\Form\WorkoutType;
+use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,16 +34,18 @@ class WorkoutController extends AbstractController
      * @Route("/{id}", name="show", requirements={"id":"\d+"}, methods={"GET"})
      *
      */
-    public function show(int $id, WorkoutRepository $workoutRepository)
+    public function show(int $id, WorkoutRepository $workoutRepository, CommentRepository $commentRepository)
     {
         $workout = $workoutRepository->find($id);
+        $comment = $commentRepository->find($id);
 
         if (!$workout) {
             throw $this->createNotFoundException("L'entraînement dont l'id est $id n'existe pas");
         }
 
         return $this->render('backoffice/workout/show.html.twig', [
-            'workout_show' => $workout
+            'workout_show' => $workout,
+            'comment_show' => $comment,
         ]);
     }
 

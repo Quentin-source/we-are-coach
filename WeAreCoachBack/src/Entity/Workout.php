@@ -81,7 +81,7 @@ class Workout
 
     /**
      * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="workout")
-     * @Groups({"workout_list"})
+     * @Groups({"workout_list","workout_detail"})
      */
     private $rate;
 
