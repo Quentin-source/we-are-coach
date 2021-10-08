@@ -17,27 +17,27 @@ class Category
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"category_list","workout_list","category_detail"})
+     * @Groups({"category_list","workout_list","category_detail","sport_detail"})
      * 
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"category_list","workout_list","category_detail"})
+     * @Groups({"category_list","workout_list","category_detail","sport_detail"})
      * 
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"category_list","category_detail"})
+     * @Groups({"category_list","category_detail","sport_detail"})
      */
     private $picture;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"category_list","category_detail"})
+     * @Groups({"category_list","category_detail","sport_detail"})
      */
     private $description;
 
