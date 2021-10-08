@@ -53,6 +53,11 @@ class Category
     {
         $this->Sport = new ArrayCollection();
     }
+    
+    public function __toString()
+    {
+        return $this->id . ' - ' . $this->name;
+    }
 
 
 

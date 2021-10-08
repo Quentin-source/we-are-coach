@@ -51,7 +51,7 @@ class WorkoutController extends AbstractController
 
         // On retourne le résultat au format JSON
         return $this->json($workout, 200, [], [
-            'groups' => ['workout_detail','workout_list']
+            'groups' => 'workout_detail'
         ]);
     }
 

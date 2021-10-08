@@ -110,6 +110,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->workout = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->id . ' - ' . $this->pseudo;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
