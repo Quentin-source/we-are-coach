@@ -1,0 +1,20 @@
+{% extends 'backoffice/layout.html.twig' %}
+
+{% block title %}Entraînement{% endblock %}
+
+{% block content %}
+    
+    <h2>Edition d'un entraînement</h2>
+    {{ form_start(formView, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_row(formView.name) }}
+    {{ form_row(formView.description) }}
+    {{ form_row(formView.level) }}
+    {{ form_row(formView.picture) }}
+    <button class="btn btn-primary">Valider</button>
+    {{ form_end(formView) }}
+
+    <p>
+        <a href="{{ path('backoffice_workout_index') }}">Retour à la liste</a>
+    </p>
+
+    {% endblock %}

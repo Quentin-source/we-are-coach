@@ -1,22 +1,24 @@
 {% extends 'backoffice/layout.html.twig' %}
 
-{% block title %}Hello workoutController!{% endblock %}
+{% block title %}Entraînements{% endblock %}
 
 {% block content %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
 <div class="example-wrapper">
-    <h1>Liste des entrainements</h1>
-
+    <h1>Liste des entraînements</h1>
+<p>
             {% for workout in workouts %}
                 <li>
+                    <a href="{{ path('backoffice_workout_show', {id:workout.id}) }}">
                         {{ workout.name }}
 
                 </li>
             {% endfor %}
+            </p>
+        <p>
+            <a href="{{ path('backoffice_workout_add') }}">Ajouter</a>
+        </p>
             <a href="{{ path('backoffice_index') }}">Retour à l'accueil</a>
 </div>
+
 {% endblock %}

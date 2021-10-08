@@ -1,0 +1,25 @@
+{% extends 'backoffice/layout.html.twig' %}
+
+{% block title %}Modifier un utilisateur{% endblock %}
+
+{% block content %}
+    
+    <h2>Edition d'un user</h2>
+    {{ form_start(formView, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_row(formView.lastname) }}
+    {{ form_row(formView.firstname) }}
+    {{ form_row(formView.pseudo) }}
+    {{ form_row(formView.city) }}
+    {{ form_row(formView.age) }}
+    {{ form_row(formView.sport1) }}
+    {{ form_row(formView.email) }}
+    {{ form_row(formView.password) }}
+    {{ form_row(formView.picture) }}
+    <button class="btn btn-primary">Valider</button>
+    {{ form_end(formView) }}
+
+    <p>
+        <a href="{{ path('backoffice_user_index') }}">Retour à la liste</a>
+    </p>
+
+    {% endblock %}
