@@ -17,20 +17,20 @@ class Sport
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"workout_list","workout_detail","sport_detail","sport_list"})
+     * @Groups({"workout_list","workout_detail","sport_detail","sport_list","category_detail"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"workout_list","workout_detail","sport_detail","sport_list"})
+     * @Groups({"workout_list","workout_detail","sport_detail","sport_list","category_detail"})
      */
     private $name;
 
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"sport_list","sport_detail"})
+     * @Groups({"sport_list","sport_detail","category_detail"})
      */
     private $picture;
 
