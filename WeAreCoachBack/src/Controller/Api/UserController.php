@@ -46,11 +46,11 @@ class UserController extends AbstractController
         }
 
         return $this->json($user, 200, [], [
-            'groups' => 'user_detail'
+            'groups' => ['user_detail','workout_list']
         ]);
     }
 
-            /**
+    /**
      * Mise à jour d'une série en fonction de son Identifiant
      * 
      * @Route("/{id}", name="update", methods={"PUT", "PATCH"})
