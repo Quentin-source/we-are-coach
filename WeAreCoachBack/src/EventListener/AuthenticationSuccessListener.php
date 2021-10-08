@@ -24,6 +24,7 @@ public function onAuthenticationSuccessResponse(AuthenticationSuccessEvent $even
     }
 
     $data['data'] = array(
+        'id' => $user->getId(),
         'username' => $user->getEmail(),
         'picture' => $user->getPicture(),
         'pseudo' => $user->getPseudo(),
