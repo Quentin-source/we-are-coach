@@ -27,11 +27,16 @@
                 <th>Photo</th>
                 <td>{{ workout_show.picture }}</td>
             </tr>
-
+            
+            <th>Commentaire</th>
+            
+            {% for comment in comments %}
             <tr>
-                <th>Commentaire</th>
-                <td>{{ comment_show.comment}}</td>
-            </tr>
+                <th></th>
+                <td><a href="{{ path('backoffice_comment_show', {id:comment.id}) }}">
+                {{ comment.comment}}</td>
+                
+                {% endfor %}
 
         </tbody>
     </table>

@@ -26,6 +26,12 @@ class WorkoutType extends AbstractType
                 'label' => 'Niveau de difficulté',
                 'attr' => ['placeholder' => 'Saisir un niveau de difficulté']
             ])
+
+            ->add('comment', null,[
+                'label' => 'Commentaire',
+            ])
+
+
             ->add('picture', FileType::class, [
                 'label' => 'Choisir une image',
 
@@ -48,7 +54,11 @@ class WorkoutType extends AbstractType
                         'mimeTypesMessage' => 'Merci de ne choisir que des fichiers .png et .jpeg',
                     ])
                 ],
+
+                
             ]);
+
+            
 
         ;
     }

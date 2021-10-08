@@ -68,6 +68,7 @@ class WorkoutController extends AbstractController
         $jsonData = $request->getContent();
 
         $workout = $serialiser->deserialize($jsonData, Workout::class, 'json');
+
      
         $em = $this->getDoctrine()->getManager();
         $em->persist($workout);
@@ -105,12 +106,6 @@ class WorkoutController extends AbstractController
             );
         }
 
-        // On fusionne les données de la série avec les données
-        // issue de l'application Front (insomnia, react, ...)
-        // Deserializing in an Existing Object : https://symfony.com/doc/current/components/serializer.html#deserializing-in-an-existing-object
-        // On demande au serializer de transformer les données JSON($jsonData)
-        // en objet de classe TvShow, tout en fusionnant ces données avec
-        // l'objet existant $tvShow
 
         $serialiser->deserialize($jsonData, Workout::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $workout]);
 
