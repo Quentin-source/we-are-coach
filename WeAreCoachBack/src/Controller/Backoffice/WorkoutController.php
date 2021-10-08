@@ -37,7 +37,6 @@ class WorkoutController extends AbstractController
     public function show(int $id, WorkoutRepository $workoutRepository, CommentRepository $commentRepository)
     {
         $workout = $workoutRepository->find($id);
-        $comment = $commentRepository->find($id);
 
         if (!$workout) {
             throw $this->createNotFoundException("L'entraînement dont l'id est $id n'existe pas");
@@ -45,8 +44,10 @@ class WorkoutController extends AbstractController
 
         return $this->render('backoffice/workout/show.html.twig', [
             'workout_show' => $workout,
-            'comment_show' => $comment,
+            'comments' => $commentRepository->findAll(),
         ]);
+
+        
     }
 
     /**

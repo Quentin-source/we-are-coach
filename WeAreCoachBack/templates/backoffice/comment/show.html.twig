@@ -1,0 +1,15 @@
+{% extends 'backoffice/layout.html.twig' %}
+
+{% block title %}Commentaire{% endblock %}
+
+{% block content %}
+    
+    <h2>Edition d'un Commentaire</h2>
+
+    <td>{{ comment_show.comment }}</td>
+
+    <p>
+        <a href="{{ path('backoffice_workout_index') }}">Retour à la liste</a>
+    </p>
+    {{ include('backoffice/comment/_delete_form.html.twig') }}
+    {% endblock %}
