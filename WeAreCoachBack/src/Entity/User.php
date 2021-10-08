@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -95,6 +97,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Groups({"user_list","user_detail"})
      */
     private $picture;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Workout::class, mappedBy="user")
+     * @Groups({"workout_list"})
+     */
+    private $workout;
+
+
+    public function __construct()
+    {
+        $this->workout = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -289,6 +303,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+
+    /**
+    * @return Collection|Workout[]
+    */
+    public function getWorkout(): Collection
+    {
+        return $this->workout;
+    }
+
+    public function addWorkout(Workout $workout): self
+    {
+        if (!$this->workout->contains($workout)) {
+            $this->workout[] = $workout;
+            $workout->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWorkout(Workout $workout): self
+    {
+        if ($this->workout->removeElement($workout)) {
+            // set the owning side to null (unless already changed)
+            if ($workout->getUser() === $this) {
+                $workout->setUser(null);
+            }
+        }
 
         return $this;
     }

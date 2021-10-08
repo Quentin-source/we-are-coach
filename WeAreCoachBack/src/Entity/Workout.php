@@ -20,7 +20,7 @@ class Workout
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"latest_workout"})
-     * @Groups({"workout_list","workout_detail","comment_add","favorite_list","favorite_detail"})
+     * @Groups({"workout_list","workout_detail","comment_add","favorite_list","favorite_detail","user_detail"})
      */
     private $id;
 
@@ -81,7 +81,7 @@ class Workout
 
     /**
      * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="workout")
-     * @Groups({"workout_list","workout_detail"})
+     * @Groups({"workout_list"})
      */
     private $rate;
 
