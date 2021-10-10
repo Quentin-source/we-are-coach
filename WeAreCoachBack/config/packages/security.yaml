@@ -49,8 +49,16 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
+         # Il faut avoir le rôle ROLE_ADMIN pour afficher le backoffice
+        - { path: ^/backoffice, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api,       roles: PUBLIC_ACCESS }
 
+    role_hierarchy:
+        # Un ROLE_ADMIN peut faire, tout ce que fait un ROLE_USER
+        ROLE_ADMIN: ROLE_USER
+
+        # Un ROLE_SUPER_ADMIN peut faire, tout ce que fait un ROLE_ADMIN
+        ROLE_SUPER_ADMIN : ROLE_ADMIN

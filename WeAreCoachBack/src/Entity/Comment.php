@@ -40,7 +40,7 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comment")
-     * @Groups({"workout_detail","comment_detail"})
+     * @Groups({"workout_detail","comment_detail","comment_list"})
      */
     private $user;
 
