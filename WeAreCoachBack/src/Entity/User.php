@@ -46,13 +46,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_list"})
-     * @Groups({"workout_list","workout_detail","user_detail","favorite_list","favorite_detail"})
+     * @Groups({"workout_list","comment_list","workout_detail","user_detail","favorite_list","favorite_detail","comment_detail"})
      */
     private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user_list","user_detail", "comment_detail"})
+     * @Groups({"user_list","user_detail"})
      */
     private $firstname;
 
@@ -94,7 +94,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user_list","user_detail"})
+     * @Groups({"user_list","user_detail","comment_list","comment_detail"})
      */
     private $picture;
 

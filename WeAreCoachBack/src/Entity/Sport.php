@@ -17,7 +17,7 @@ class Sport
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"workout_list","sport_detail","sport_list","category_detail"})
+     * @Groups({"workout_list","workout_detail","sport_detail","sport_list","category_detail"})
      */
     private $id;
 

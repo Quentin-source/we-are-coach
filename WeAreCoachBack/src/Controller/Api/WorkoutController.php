@@ -74,9 +74,9 @@ class WorkoutController extends AbstractController
         $em->persist($workout);
         $em->flush();
 
-        return $this->json($workout, 200, [], [ObjectNormalizer::CIRCULAR_REFERENCE_HANDLER=> function($object){
-            return $object->getName();
-        }]);
+        return $this->json($workout, 200, [], [
+        'groups' => 'workout_detail'
+        ]);
     }
 
     /**
