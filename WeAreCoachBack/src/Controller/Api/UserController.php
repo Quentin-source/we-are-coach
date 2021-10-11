@@ -10,6 +10,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
     /**
      * @Route("/api/user", name="api_user_")
@@ -57,16 +58,15 @@ class UserController extends AbstractController
      *
      * @return void
      */
-    public function update(int $id, UserRepository $userRepository, Request $request, SerializerInterface $serialiser)
+    public function update(int $id, UserRepository $userRepository, Request $request, SerializerInterface $serialiser,UserPasswordHasherInterface $passwordHasher)
     {
-        // On récupère les données reçues au format JSON
+
         $jsonData = $request->getContent();
 
-        // On récupère la série dont l'ID est $id
         $user = $userRepository->find($id);
 
         if (!$user) {
-            // Si la série à mettre à jour n'existe pas
+            // Si l'utilisateur à mettre à jour n'existe pas
             // on retourne un message d'erreur (400::bad request ou 404:: not found)
             return $this->json(
                 [
@@ -78,15 +78,11 @@ class UserController extends AbstractController
             );
         }
 
-        // On fusionne les données de la série avec les données
-        // issue de l'application Front (insomnia, react, ...)
-        // Deserializing in an Existing Object : https://symfony.com/doc/current/components/serializer.html#deserializing-in-an-existing-object
-        // On demande au serializer de transformer les données JSON($jsonData)
-        // en objet de classe TvShow, tout en fusionnant ces données avec
-        // l'objet existant $tvShow
-
         $serialiser->deserialize($jsonData, User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);
 
+        $user->setPassword(
+            $passwordHasher->hashPassword($user,$user->getPassword())
+            );
         // On appelle le manager pour effectuer la mise à jour en BDD
         $em = $this->getDoctrine()->getManager();
         $em->flush();
