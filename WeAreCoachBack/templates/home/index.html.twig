@@ -3,28 +3,13 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello! ✅</h1>
+      <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container" data-aos="fade-up">
+      <h1>Bienvenue dans le Backoffice de We are coach !</h1>
+      <a href="{{ path('backoffice_index') }}" class="btn-get-started scrollto"><i class="bx bx-chevrons-down"></i>🔒 </a>
+    </div>
+  </section><!-- End Hero -->
 
-    <ul>
-        {% for category in categoryList %}
-            <li> {{category.name}} 
-            <img src="{{category.picture}}" width="100" >
-            {{category.description}}
-            </li>
-        {% endfor %}
-    </ul>
-<a href="{{ path('backoffice_index') }}">Accès au Backoffice</a>
-
-    <ul>
-{% for workout in latestWorkout %}
-<li> {{workout.name}} </li>
-{% endfor %}
-    </ul>
-</div>
 {% endblock %}

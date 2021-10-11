@@ -7,6 +7,8 @@
     <h2>Edition d'un Sport</h2>
     {{ form_start(formView, {'attr': {'novalidate': 'novalidate'}}) }}
     {{ form_row(formView.name, {'attr': {'class':'geronimo'}}) }}
+    {{ form_row(formView.category) }}
+    {{ form_row(formView.picture) }}
     <button class="btn btn-primary">Valider</button>
     {{ form_end(formView) }}
 

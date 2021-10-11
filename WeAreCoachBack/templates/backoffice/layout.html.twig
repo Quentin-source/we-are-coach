@@ -1,17 +1,6 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                {% include "backoffice/_nav.html.twig" %}
-            </nav>
 
+    {% block content %}{% endblock %}
 
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-
-                {% block content %}{% endblock %}
-        {% include "partials/_footer.html.twig" %}
-            </section>
-        </div>
-    </div>
 {% endblock %}

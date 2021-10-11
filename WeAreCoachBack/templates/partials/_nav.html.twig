@@ -1,60 +1,41 @@
-{# <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <div class="container">
-            <a class="navbar-brand text-danger" href="{{ path('home') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-play" viewbox="0 0 16 16">
-                    <path d="M6 10.117V5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43z"/>
-                    <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
-                </svg>
-                <strong>We Are Coach</strong>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('tvshow_index') }}">Séries</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Ma liste</a>
-                    </li>
+<!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-transparent">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1 class="text-light"><a href="{{path('backoffice_index')}}"><span>We Are Coach</span></a></h1>
+        <img src="">
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto {{ 'backoffice_index' in currentRoute ? ' active':'' }}" href="{{path('backoffice_index')}}">Home</a></li>
+          <li><a class="nav-link scrollto{{ 'backoffice_user' in currentRoute ? ' active':'' }}" href="{{path('backoffice_user_index')}}">Gérer les utilisateurs</a></li>
+          <li><a class="nav-link scrollto{{ 'backoffice_workout' in currentRoute ? ' active':'' }}" href="{{path('backoffice_workout_index')}}">Gérer les entrainements</a></li>
+          <li><a class="nav-link scrollto{{ 'backoffice_category' in currentRoute ? ' active':'' }}" href="{{path('backoffice_category_index')}}">Gérer les catégories</a></li>
+          <li><a class="nav-link scrollto{{ 'backoffice_sport' in currentRoute ? ' active':'' }}" href="{{path('backoffice_sport_index')}}">Gérer les sports</a></li>
+
+          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
                 </ul>
-                <ul class="navbar-nav me-4 mb-md-0">
-                    {% if app.user %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ app.user.firstname }}
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <a class="dropdown-item" href="#">Profil</a>
-                                </li>
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <li>
-                                        <a class="dropdown-item" href="{{ path('backoffice_index') }}">Backoffice</a>
-                                    </li>
-                                {% endif %}
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
-                                </li>
-                            </ul>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="btn btn-danger" aria-current="page" href="{{ path('app_login') }}">Se connecter</a>
-                        </li>
-                    {% endif %}
-                </ul>
-                <form class="d-flex m" action="{{ path('search_index') }}">
-                    <input name="search" class="form-control me-2" type="search" placeholder="Ex : The mandalorian" aria-label="Search">
-                    <button class="btn btn-outline-secondary" type="submit">GO</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-</header> #}
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
