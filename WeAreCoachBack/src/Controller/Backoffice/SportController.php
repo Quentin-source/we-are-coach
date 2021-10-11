@@ -84,13 +84,18 @@ class SportController extends AbstractController
      *
      * @return Response
      */
-    public function edit(Sport $sport, Request $request)
+    public function edit(Sport $sport, Request $request, ImageUploader $imageUploader)
     {
         $form = $this->createForm(SportType::class, $sport);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $newFile = $imageUploader->upload($form, 'picture');
+            if ($newFile) {
+                $sport->setPicture($newFile);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($sport);
             $em->flush();
@@ -103,7 +108,7 @@ class SportController extends AbstractController
         return $this->render('backoffice/sport/edit.html.twig', [
             'formView' => $form->createView()
         ]);
-    }
+    }    
 
     /**
      * 
