@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\ImageUploader;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
      * @Route("/backoffice/user", name="backoffice_user_", requirements={"id": "\d+"})
@@ -48,7 +49,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/add", name="add",  methods={"GET","POST"})
-     *
+     * @IsGranted("ROLE_SUPER_ADMIN")
      * @return Response
      */
     public function add(Request $request, ImageUploader $imageUploader)
@@ -79,7 +80,7 @@ class UserController extends AbstractController
     /**
      * 
      * @Route("/{id}/edit", name="edit")
-     *
+     * @IsGranted("ROLE_SUPER_ADMIN")
      * @return Response
      */
     public function edit(User $user, Request $request)
@@ -106,7 +107,7 @@ class UserController extends AbstractController
     /**
      * 
      * @Route("/{id}/delete", name="delete")
-     * 
+     * @IsGranted("ROLE_SUPER_ADMIN")
      * @return Response
      */
     public function delete(User $user)

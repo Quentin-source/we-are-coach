@@ -97,7 +97,7 @@ class Category
 
     public function setDescription(string $description): self
     {
-        $this->pictudescriptionre = $description;
+        $this->pictudescription = $description;
 
         return $this;
     }

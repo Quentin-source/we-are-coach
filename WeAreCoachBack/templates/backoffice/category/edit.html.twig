@@ -1,18 +1,87 @@
-{% extends 'backoffice/layout.html.twig' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>We Are Coach </title>
 
-{% block title %}Ajouter une catégorie{% endblock %}
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
-{% block content %}
+      </div>
+
+    </head>
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+{% set currentRoute = app.request.get('_route') %}
+  <header id="header" class="fixed-top header-transparent">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1 class="text-light"><a href="{{path('backoffice_index')}}"><span>We Are Coach</span></a></h1>
+        <img src="">
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto {{ 'backoffice_index' in currentRoute ? ' active':'' }}" href="{{path('backoffice_index')}}">Home</a></li>
+          <li><a class="nav-link scrollto{{ 'backoffice_user' in currentRoute ? ' active':'' }}" href="{{path('backoffice_user_index')}}">Gérer les utilisateurs</a></li>
+          <li><a class="nav-link scrollto{{ 'backoffice_workout' in currentRoute ? ' active':'' }}" href="{{path('backoffice_workout_index')}}">Gérer les entrainements</a></li>
+          <li><a class="nav-link scrollto{{ 'backoffice_category' in currentRoute ? ' active':'' }}" href="{{path('backoffice_category_index')}}">Gérer les catégories</a></li>
+          <li><a class="nav-link scrollto{{ 'backoffice_sport' in currentRoute ? ' active':'' }}" href="{{path('backoffice_sport_index')}}">Gérer les sports</a></li>
+
+          {# <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li> #}
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero2">
+    <div class="hero-container2" data-aos="fade-up">
+      <h1>Modifier un entrainement</h1>
+    </div>
+  </section><!-- End Hero -->
+
+  <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container">
+        <div class="section-title" data-aos="fade-in" data-aos-delay="100">
+
     
     <h2>Edition d'une catégorie</h2>
     {{ form_start(formView, {'attr': {'novalidate': 'novalidate'}}) }}
     {{ form_row(formView.name, {'attr': {'class':'geronimo'}}) }}
     {{ form_row(formView.description, {'attr': {'class':'geronimo'}}) }}
-    <button class="btn btn-primary">Valider</button>
+    {{ form_row(formView.picture, {'attr': {'class':'geronimo'}}) }}
+        <button class="btn btn-success">Valider</button>
     {{ form_end(formView) }}
+
 
     <p>
         <a href="{{ path('backoffice_category_index') }}">Retour à la liste</a>
     </p>
 
-    {% endblock %}

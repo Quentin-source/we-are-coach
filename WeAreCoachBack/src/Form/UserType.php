@@ -59,8 +59,16 @@ class UserType extends AbstractType
                 'attr' => ['placeholder' => 'Saisir un mot de passe']
             ])
             ->add('sport1', null,[
-                'label' => 'Sport',
-                'attr' => ['placeholder' => 'Saisir un sport']
+                'label' => 'Sport 1',
+                'attr' => ['placeholder' => 'Saisir un premier sport']
+            ])
+            ->add('sport2', null,[
+                'label' => 'Sport 2',
+                'attr' => ['placeholder' => 'Saisir un second sport']
+            ])
+            ->add('sport3', null,[
+                'label' => 'Sport 3',
+                'attr' => ['placeholder' => 'Saisir un troisième sport']
             ])
             ->add('picture', FileType::class, [
                 'label' => 'Choisir une image',
