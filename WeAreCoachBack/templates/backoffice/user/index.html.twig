@@ -1,8 +1,8 @@
-{% extends 'backoffice/layout.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Utilisateurs{% endblock %}
+{% block title %}Utilisateurs - {{parent()}} {% endblock %}
 
-{% block content %}
+{% block body %}
 
 <div class="example-wrapper">
     <h1>Liste des utilisateurs</h1>
