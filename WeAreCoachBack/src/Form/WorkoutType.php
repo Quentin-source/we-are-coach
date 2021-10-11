@@ -27,11 +27,6 @@ class WorkoutType extends AbstractType
                 'attr' => ['placeholder' => 'Saisir un niveau de difficulté']
             ])
 
-            ->add('comment', null,[
-                'label' => 'Commentaire',
-            ])
-
-
             ->add('picture', FileType::class, [
                 'label' => 'Choisir une image',
 
