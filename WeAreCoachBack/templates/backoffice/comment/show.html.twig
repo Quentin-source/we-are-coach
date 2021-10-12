@@ -18,6 +18,8 @@
 <body>
 
 <!-- ======= Header ======= -->
+{% include "partials/_flash.html.twig" %}
+
 {% set currentRoute = app.request.get('_route') %}
   <header id="header" class="fixed-top header-transparent">
     <div class="container d-flex align-items-center justify-content-between">
@@ -78,6 +80,6 @@
     {{ include('backoffice/comment/_delete_form.html.twig') }}
 
     <p>
-        <a href="{{ path('backoffice_workout_index') }}" class="btn btn-primary">Retour à la liste</a>
+        <a href="{{ path('backoffice_comment_index') }}" class="btn btn-primary">Retour à la liste</a>
     </p>
 

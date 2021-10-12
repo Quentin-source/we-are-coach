@@ -83,13 +83,21 @@
                 <th>Nom</th>
                 <td>{{ category_show.name }}</td>
             </tr>
+            
             <tr>
                 <th>Description</th>
                 <td>{{ category_show.description }}</td>
             </tr>
+
             <tr>
                 <th>Photo</th>
-                <td>{{ category_show.picture }}</td>
+                <td>
+                {% if "http" in category_show.picture %}
+                        <img src="{{ category_show.picture }}" width="100">
+                    {% else %}
+                        <img src="{{ asset('uploads/' ~ category_show.picture) }}" width="100">
+                    {% endif %}
+                  </td>
             </tr>
 
         </tbody>
