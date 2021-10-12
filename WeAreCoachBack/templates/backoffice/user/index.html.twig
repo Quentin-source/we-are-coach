@@ -27,7 +27,7 @@
         <img src="">
       </div>
 
-      <nav id="navbar" class="navbar ">
+      <nav id="navbar" class="navbar" >
         <ul>
           <li><a class="nav-link scrollto {{ 'backoffice_index' in currentRoute ? ' active':'' }}" href="{{path('backoffice_index')}}">Home</a></li>
           <li><a class="nav-link scrollto{{ 'backoffice_user' in currentRoute ? ' active':'' }}" href="{{path('backoffice_user_index')}}">Gérer les utilisateurs</a></li>
@@ -82,12 +82,15 @@
       <div class="container">
 <div class="row portfolio-container" data-aos="fade-up">
 {% for user in users %}
+
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="icon-box" data-aos="fade-up">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <a href="{{ path('backoffice_user_show', {id:user.id}) }}"><h4 class="title">{{ user.firstname }} {{ user.lastname }}</h4></a>
+              <a href="{{ path('backoffice_user_show', {id:user.id}) }}">
+              <h4 class="title">{{ user.firstname }} {{ user.lastname }}</h4>
               <p class="description">{{ user.email }}</p>
               <p class="description">{{ user.pseudo }}</p>
+              </a>
             
             </div>
             
