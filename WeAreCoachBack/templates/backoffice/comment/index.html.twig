@@ -35,6 +35,7 @@
           <li><a class="nav-link scrollto{{ 'backoffice_category' in currentRoute ? ' active':'' }}" href="{{path('backoffice_category_index')}}">Gérer les catégories</a></li>
           <li><a class="nav-link scrollto{{ 'backoffice_sport' in currentRoute ? ' active':'' }}" href="{{path('backoffice_sport_index')}}">Gérer les sports</a></li>
           <li><a class="nav-link scrollto{{ 'backoffice_comment' in currentRoute ? ' active':'' }}" href="{{path('backoffice_comment_index')}}">Gérer les commentaires</a></li>
+
           {# <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -62,51 +63,41 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero2">
     <div class="hero-container2" data-aos="fade-up">
-      <h1>Détails</h1>
-
-
+    <h1>Liste des commentaires</h1>
     </div>
   </section><!-- End Hero -->
-  <!-- ======= Services Section ======= -->
+
+    <!-- ======= Services Section ======= -->
     <section id="services" class="services">
       <div class="container">
+
         <div class="section-title" data-aos="fade-in" data-aos-delay="100">
-            <h2>Information</h2>
+          <h2>Commentaire</h2>
+          <p>Vous trouverez ici l'ensemble des commentaires disponibles sur We Are Coach</p>
+        </div>
 
-        <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ sport_show.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ sport_show.name }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td>
-                    {% if "http" in sport_show.picture %}
-                        <img src="{{ sport_show.picture }}" width="100">
-                    {% else %}
-                        <img src="{{ asset('uploads/' ~ sport_show.picture) }}" width="100">
-                    {% endif %}
-                </td>
-            </tr>
+            <section id="portfolio" class="portfolio">
+      <div class="container">
+<div class="row portfolio-container" data-aos="fade-up">
+{% for comment in comments %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="icon-box" data-aos="fade-up">
+              <div class="icon"><i class="bx bx-file"></i></div>
+              <a href="{{ path('backoffice_comment_show', {id:comment.id}) }}">
+              <h4 class="title">{{ comment.workout }}</h4>
+              <p>{{ comment.comment }}</p>
+              </a>
 
-             <tr>
-                <th>Catégorie</th>
-                <td>{{ sport_show.category }}</td>
-            </tr>
+            
+            </div>
+            
+          </div>
+{% endfor %}
+        </div>
 
-        </tbody>
-    </table>
-{{ include('backoffice/sport/_delete_form.html.twig') }}
-<p>
-    <a href="{{path('backoffice_sport_edit', {id:sport_show.id}) }}" class="btn btn-warning">Modifier</a>
-</p>
-    
-<p>
-    <a href="{{path('backoffice_sport_index')  }}" class="btn btn-primary">Retour à la liste des sports</a>
-</p>
+              </div>
+
+  </section><!-- End Portfolio Section -->
+
+
 

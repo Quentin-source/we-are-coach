@@ -16,6 +16,18 @@ class CommentController extends AbstractController
 {
 
     /**
+     * Show all categories from Admin
+     *
+     * @Route("/", name="index", methods={"GET"})
+     */
+    public function index(CommentRepository $commentRepository): Response
+    {
+        return $this->render('backoffice/comment/index.html.twig', [
+            'comments' => $commentRepository->findAll(),
+        ]);
+    }
+
+    /**
      * @Route("/{id}", name="show", requirements={"id":"\d+"}, methods={"GET"})
      *
      */
@@ -31,9 +43,9 @@ class CommentController extends AbstractController
             'comment_show' => $comment,
 
         ]);
-
         
     }
+
 
     /**
      * 
