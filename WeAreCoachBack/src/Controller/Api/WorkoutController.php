@@ -39,17 +39,14 @@ class WorkoutController extends AbstractController
      */
     public function show(int $id, WorkoutRepository $workoutRepository)
     {
-        // On récupère une série en fonction de son id
         $workout = $workoutRepository->find($id);
 
-        // Si la série n'existe pas, on retourne une erreur 404
         if (!$workout) {
             return $this->json([
                 'error' => 'Lentrainement ' . $id . ' n\'existe pas'
             ], 404);
         }
 
-        // On retourne le résultat au format JSON
         return $this->json($workout, 200, [], [
             'groups' => 'workout_detail'
         ]);
@@ -59,7 +56,6 @@ class WorkoutController extends AbstractController
      * 
      * @Route("/add", name="add", methods={"POST"})
      * 
-     *
      * @return void
      */
     public function add( Request $request, SerializerInterface $serialiser)
@@ -87,15 +83,11 @@ class WorkoutController extends AbstractController
      */
     public function update(int $id, WorkoutRepository $workoutRepository, Request $request, SerializerInterface $serialiser)
     {
-        // On récupère les données reçues au format JSON
         $jsonData = $request->getContent();
 
-        // On récupère la série dont l'ID est $id
         $workout = $workoutRepository->find($id);
 
         if (!$workout) {
-            // Si la série à mettre à jour n'existe pas
-            // on retourne un message d'erreur (400::bad request ou 404:: not found)
             return $this->json(
                 [
                     'errors' => [
@@ -109,7 +101,6 @@ class WorkoutController extends AbstractController
 
         $serialiser->deserialize($jsonData, Workout::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $workout]);
 
-        // On appelle le manager pour effectuer la mise à jour en BDD
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
@@ -137,7 +128,6 @@ class WorkoutController extends AbstractController
             );
         }
 
-        // On appelle le manager pour gérer la suppresion de la série
         $em = $this->getDoctrine()->getManager();
         $em->remove($workout);
         $em->flush();

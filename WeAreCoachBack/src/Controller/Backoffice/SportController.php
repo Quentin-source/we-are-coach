@@ -118,7 +118,6 @@ class SportController extends AbstractController
      */
     public function delete(Sport $sport)
     {
-        // On supprime la catégorie en BDD
         $em = $this->getDoctrine()->getManager();
         $em->remove($sport);
         $em->flush();

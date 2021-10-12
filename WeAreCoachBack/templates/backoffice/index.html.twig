@@ -3,12 +3,25 @@
 {% block title %}Hello Backoffice!{% endblock %}
 
 {% block content %}
+  <div class="my-3 text-center">
+      {% for label, messages in app.flashes %}
+          {% for message in messages %}
+              <div class="alert alert-{{ label }}">
+                  {{ message }}
+              </div>
+          {% endfor %}
+      {% endfor %}
+  </div>
+
 
       <!-- ======= Hero Section ======= -->
+
   <section id="hero">
     <div class="hero-container" data-aos="fade-up">
       <h1>Bienvenue dans le Backoffice de We are coach !</h1>
     </div>
-  </section><!-- End Hero -->
+  </section>
+  
+  <!-- End Hero -->
 
 {% endblock %}

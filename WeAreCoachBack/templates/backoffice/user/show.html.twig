@@ -17,6 +17,7 @@
 
 <body>
 
+
 <!-- ======= Header ======= -->
 {% set currentRoute = app.request.get('_route') %}
   <header id="header" class="fixed-top header-transparent">
@@ -64,6 +65,15 @@
     <div class="hero-container2" data-aos="fade-up">
       <h1>{{ user_show.firstname }} {{ user_show.lastname }}</h1>
     </div>
+    <div class="my-3 text-center">
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>
   </section><!-- End Hero -->
 
   <!-- ======= Services Section ======= -->
