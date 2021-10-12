@@ -34,7 +34,8 @@
           <li><a class="nav-link scrollto{{ 'backoffice_workout' in currentRoute ? ' active':'' }}" href="{{path('backoffice_workout_index')}}">Gérer les entrainements</a></li>
           <li><a class="nav-link scrollto{{ 'backoffice_category' in currentRoute ? ' active':'' }}" href="{{path('backoffice_category_index')}}">Gérer les catégories</a></li>
           <li><a class="nav-link scrollto{{ 'backoffice_sport' in currentRoute ? ' active':'' }}" href="{{path('backoffice_sport_index')}}">Gérer les sports</a></li>
-
+          <li><a class="nav-link scrollto{{ 'backoffice_comment' in currentRoute ? ' active':'' }}" href="{{path('backoffice_comment_index')}}">Gérer les commentaires</a></li>
+          
           {# <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -95,16 +96,8 @@
                 <th>Photo</th>
                 <td>{{ workout_show.picture }}</td>
             </tr>
+
             
-            <th>Commentaire</th>
-            
-            {% for comment in comments %}
-            <tr>
-                <th></th>
-                <td><a href="{{ path('backoffice_comment_show', {id:comment.id}) }}">
-                {{ comment.comment}}</td>
-                
-                {% endfor %}
 
         </tbody>
     </table>

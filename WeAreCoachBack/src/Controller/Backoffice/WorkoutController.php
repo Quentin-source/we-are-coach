@@ -44,7 +44,8 @@ class WorkoutController extends AbstractController
 
         return $this->render('backoffice/workout/show.html.twig', [
             'workout_show' => $workout,
-            'comments' => $commentRepository->findAll(),
+
+           'comments' => $commentRepository->findAll(),
         ]);
 
         
