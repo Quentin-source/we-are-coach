@@ -17,14 +17,14 @@ class Category
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"category_list","workout_list","category_detail","sport_detail","sport_list"})
+     * @Groups({"category_list","workout_list","category_detail","sport_detail","sport_list","category_search"})
      * 
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"category_list","workout_list","category_detail","sport_detail","sport_list"})
+     * @Groups({"category_list","workout_list","category_detail","sport_detail","sport_list","category_search"})
      * 
      */
     private $name;
