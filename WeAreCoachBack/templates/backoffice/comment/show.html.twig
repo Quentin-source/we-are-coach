@@ -17,6 +17,8 @@
 
 <body>
 
+
+
 <!-- ======= Header ======= -->
 {% include "partials/_flash.html.twig" %}
 
@@ -68,6 +70,15 @@
 
 
     </div>
+    <div class="my-3 text-center">
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>
   </section><!-- End Hero -->
   <!-- ======= Services Section ======= -->
     <section id="services" class="services">

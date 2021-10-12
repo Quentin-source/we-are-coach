@@ -52,7 +52,6 @@ class UserController extends AbstractController
     }
 
     /**
-     * Mise à jour d'une série en fonction de son Identifiant
      * 
      * @Route("/{id}", name="update", methods={"PUT", "PATCH"})
      *
@@ -66,8 +65,6 @@ class UserController extends AbstractController
         $user = $userRepository->find($id);
 
         if (!$user) {
-            // Si l'utilisateur à mettre à jour n'existe pas
-            // on retourne un message d'erreur (400::bad request ou 404:: not found)
             return $this->json(
                 [
                     'errors' => [
@@ -83,7 +80,6 @@ class UserController extends AbstractController
         $user->setPassword(
             $passwordHasher->hashPassword($user,$user->getPassword())
             );
-        // On appelle le manager pour effectuer la mise à jour en BDD
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
@@ -92,7 +88,7 @@ class UserController extends AbstractController
         ]);
     }
 
-        /**
+    /**
      * @Route("/{id}", name="delete", methods={"DELETE"})
      *
      * @return JsonResponse
@@ -102,7 +98,6 @@ class UserController extends AbstractController
         $user = $userRepository->find($id);
 
         if (!$user) {
-            // La série n'existe pas
             return $this->json(
                 [
                     'errors' => ['message' => 'L\'utilisateur ' . $id . ' n\'existe pas']
@@ -111,7 +106,6 @@ class UserController extends AbstractController
             );
         }
 
-        // On appelle le manager pour gérer la suppresion de la série
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);
         $em->flush();

@@ -35,7 +35,6 @@ class CommentController extends AbstractController
      * 
      * @Route("/{id}", name="show", methods={"GET"})
      * 
-     *
      * @return JsonResponse
      */
     public function show(int $id, CommentRepository $commentRepository)
@@ -43,14 +42,12 @@ class CommentController extends AbstractController
  
         $comment = $commentRepository->find($id);
 
-        // Si la série n'existe pas, on retourne une erreur 404
         if (!$comment) {
             return $this->json([
                 'error' => 'le commentaire ' . $id . ' n\'existe pas'
             ], 404);
         }
 
-        // On retourne le résultat au format JSON
         return $this->json($comment, 200, [], [
             'groups' => 'comment_detail'
         ]);
@@ -78,7 +75,8 @@ class CommentController extends AbstractController
             'groups' => 'comment_detail'
         ]);
 }
-/**
+
+    /**
      * @Route("/{id}", name="delete", methods={"DELETE"})
      *
      * @return JsonResponse
@@ -96,7 +94,6 @@ class CommentController extends AbstractController
                 404
             );
         }
-
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($comment);
@@ -121,8 +118,6 @@ class CommentController extends AbstractController
         $comment = $commentRepository->find($id);
 
         if (!$comment) {
-            // Si la série à mettre à jour n'existe pas
-            // on retourne un message d'erreur (400::bad request ou 404:: not found)
             return $this->json(
                 [
                     'errors' => [
@@ -132,7 +127,6 @@ class CommentController extends AbstractController
                 404
             );
         }
-
 
         $serialiser->deserialize($jsonData, Comment::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $comment]);
 

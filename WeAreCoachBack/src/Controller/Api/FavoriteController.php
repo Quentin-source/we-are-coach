@@ -12,7 +12,7 @@ use App\Repository\FavoriteRepository;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
-/**
+    /**
      * @Route("/api/favorite", name="api_favorite_")
      */
 class FavoriteController extends AbstractController
@@ -33,21 +33,18 @@ class FavoriteController extends AbstractController
     *
     * @Route("/{id}", name="show", methods={"GET"})
     *
-    *
     * @return JsonResponse
     */
     public function show(int $id, FavoriteRepository $favoriteRepository)
     {
         $favorite = $favoriteRepository->find($id);
 
-        // Si la série n'existe pas, on retourne une erreur 404
         if (!$favorite) {
             return $this->json([
                 'error' => 'le favoris ' . $id . ' n\'existe pas'
             ], 404);
         }
 
-        // On retourne le résultat au format JSON
         return $this->json($favorite, 200, [], [
             'groups' => 'favorite_detail'
         ]);
@@ -56,7 +53,6 @@ class FavoriteController extends AbstractController
     /**
      *
      * @Route("/add", name="add", methods={"POST"})
-     *
      *
      * @return void
      */
@@ -93,7 +89,6 @@ class FavoriteController extends AbstractController
             );
         }
 
-        // On appelle le manager pour gérer la suppresion de la série
         $em = $this->getDoctrine()->getManager();
         $em->remove($favorite);
         $em->flush();

@@ -4,6 +4,16 @@
 
 {% block body %}
 
+  <div class="my-3 text-center">
+      {% for label, messages in app.flashes %}
+          {% for message in messages %}
+              <div class="alert alert-{{ label }}">
+                  {{ message }}
+              </div>
+          {% endfor %}
+      {% endfor %}
+  </div>
+
       <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container" data-aos="fade-up">

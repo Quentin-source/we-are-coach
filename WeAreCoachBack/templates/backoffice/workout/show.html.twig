@@ -15,7 +15,6 @@
     </head>
 </head>
 
-<body>
 
 <!-- ======= Header ======= -->
 {% set currentRoute = app.request.get('_route') %}
@@ -55,19 +54,33 @@
           </li> #}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav>
 
     </div>
-  </header><!-- End Header -->
+  </header>
+  <!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
   <section id="hero2">
     <div class="hero-container2" data-aos="fade-up">
       <h1>Détails</h1>
 
+<body>
+    <div class="my-3 text-center">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
 
     </div>
-  </section><!-- End Hero -->
+  </section>
+                <!-- End Hero -->
+
+
   <!-- ======= Services Section ======= -->
     <section id="services" class="services">
       <div class="container">
@@ -102,18 +115,15 @@
                     {% endif %}
                 </td>
             </tr>
-
-            
-
         </tbody>
     </table>
 
 {{ include('backoffice/workout/_delete_form.html.twig') }}
 
-<p>
-    <a href="{{ path('backoffice_workout_edit', {id:workout_show.id}) }}" class="btn btn-warning">Modifier</a>
-</p>
-    
-<p>
-    <a href="{{ path('backoffice_workout_index') }}" class="btn btn-primary">Retour à la liste des entraînements</a>
-</p>
+      <p>
+          <a href="{{ path('backoffice_workout_edit', {id:workout_show.id}) }}" class="btn btn-warning">Modifier</a>
+      </p>
+          
+      <p>
+          <a href="{{ path('backoffice_workout_index') }}" class="btn btn-primary">Retour à la liste des entraînements</a>
+      </p>

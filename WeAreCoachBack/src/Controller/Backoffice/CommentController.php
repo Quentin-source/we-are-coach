@@ -55,7 +55,6 @@ class CommentController extends AbstractController
      */
     public function delete(Comment $comment)
     {
-        // On supprime la catégorie en BDD
         $em = $this->getDoctrine()->getManager();
         $em->remove($comment);
         $em->flush();

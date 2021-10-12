@@ -111,7 +111,7 @@ class CategoryController extends AbstractController
      */
     public function delete(category $category)
     {
-        // On supprime la catégorie en BDD
+        // We delete the cateory in BDD
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);
         $em->flush();

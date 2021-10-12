@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 
-/**
+    /**
      * @Route("/api/sport", name="api_sport_")
      */
     class SportController extends AbstractController
@@ -37,17 +37,14 @@ use Symfony\Component\HttpFoundation\Request;
          */
         public function show(int $id, SportRepository $sportRepository)
         {
-            // On récupère une série en fonction de son id
             $sport = $sportRepository->find($id);
     
-            // Si la série n'existe pas, on retourne une erreur 404
             if (!$sport) {
                 return $this->json([
                     'error' => 'Le sport ' . $id . ' n\'existe pas'
                 ], 404);
             }
     
-            // On retourne le résultat au format JSON
             return $this->json($sport, 200, [], [
                 'groups' => 'sport_detail'
             ]);

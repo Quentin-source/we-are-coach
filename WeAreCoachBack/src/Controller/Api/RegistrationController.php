@@ -32,13 +32,10 @@ class RegistrationController extends AbstractController
             );
 
 
-        // Pour sauvegarder, on appelle le manager
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
 
-        // On retourne une réponse en indiquant que la ressource
-        // a bien été créée (code http 201)
         return $this->json($user, 201);
     }
 
