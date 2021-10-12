@@ -11,6 +11,7 @@ use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\ImageUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
      * @Route("/backoffice/user", name="backoffice_user_", requirements={"id": "\d+"})
@@ -52,7 +53,7 @@ class UserController extends AbstractController
      * @IsGranted("ROLE_SUPER_ADMIN")
      * @return Response
      */
-    public function add(Request $request, ImageUploader $imageUploader)
+    public function add(Request $request, ImageUploader $imageUploader, UserPasswordHasherInterface $passwordHasher)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -60,8 +61,14 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $newFile = $imageUploader->upload($form, 'picture');
+            $user->setPassword(
+            $passwordHasher->hashPassword($user,$user->getPassword())
+            );
             if ($newFile){
                 $user->setPicture($newFile);
+                $user->setPassword(
+                    $passwordHasher->hashPassword($user,$user->getPassword())
+                    );
             }
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

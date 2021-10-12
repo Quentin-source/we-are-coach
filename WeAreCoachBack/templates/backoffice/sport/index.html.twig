@@ -82,8 +82,10 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="icon-box" data-aos="fade-up">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <a href="{{ path('backoffice_sport_show', {id:sport.id}) }}"><h4 class="title">{{ sport.name }}</h4></a>
+              <a href="{{ path('backoffice_sport_show', {id:sport.id}) }}">
+              <h4 class="title">{{ sport.name }}</h4>
               <img src="{{ sport.picture }}" width="100">
+              </a>
 
             
             </div>

@@ -81,10 +81,12 @@
 {% for workout in workouts %}
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="icon-box" data-aos="fade-up">
+            <a href="{{ path('backoffice_workout_show', {id:workout.id}) }}">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <a href="{{ path('backoffice_workout_show', {id:workout.id}) }}"><h4 class="title">{{ workout.name }}</h4></a>
+              
+              <h4 class="title">{{ workout.name }}</h4></a>
               <p class="description">{{ workout.description }}</p>
-
+              </a>
             
             </div>
             
