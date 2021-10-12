@@ -92,7 +92,13 @@
         <tbody>
             <tr>
             <th scope="row">{{ user_show.id }}</th>
-                <td>{{ user_show.picture }}</td>
+                  <td>
+                    {% if "http" in user_show.picture %}
+                        <img src="{{ user_show.picture }}" width="100">
+                    {% else %}
+                        <img src="{{ asset('uploads/' ~ user_show.picture) }}" width="100">
+                    {% endif %}
+                </td>
                 <td>{{ user_show.lastname }}</td>
                 <td>{{ user_show.firstname }}</td>
                 <td>{{ user_show.age }}</td>

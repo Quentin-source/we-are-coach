@@ -94,7 +94,13 @@
             </tr>
             <tr>
                 <th>Photo</th>
-                <td>{{ workout_show.picture }}</td>
+                <td>
+                    {% if "http" in workout_show.picture %}
+                        <img src="{{ workout_show.picture }}" width="100">
+                    {% else %}
+                        <img src="{{ asset('uploads/' ~ workout_show.picture) }}" width="100">
+                    {% endif %}
+                </td>
             </tr>
 
             

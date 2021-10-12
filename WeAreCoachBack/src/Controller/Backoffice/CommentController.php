@@ -63,6 +63,6 @@ class CommentController extends AbstractController
         // Message flash
         $this->addFlash('info', 'Le commentaire ' . $comment->getComment() . ' a bien été supprimé');
 
-        return $this->redirectToRoute('backoffice_workout_index');
+        return $this->redirectToRoute('backoffice_comment_index');
     }
 }
