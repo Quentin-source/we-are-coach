@@ -8,7 +8,7 @@
 
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+
 
       </div>
 
@@ -27,7 +27,7 @@
         <img src="">
       </div>
 
-      <nav id="navbar" class="navbar">
+      <nav id="navbar" class="navbar ">
         <ul>
           <li><a class="nav-link scrollto {{ 'backoffice_index' in currentRoute ? ' active':'' }}" href="{{path('backoffice_index')}}">Home</a></li>
           <li><a class="nav-link scrollto{{ 'backoffice_user' in currentRoute ? ' active':'' }}" href="{{path('backoffice_user_index')}}">Gérer les utilisateurs</a></li>
