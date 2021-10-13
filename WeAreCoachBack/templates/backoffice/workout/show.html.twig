@@ -65,21 +65,19 @@
   <section id="hero2">
     <div class="hero-container2" data-aos="fade-up">
       <h1>Détails</h1>
-
-<body>
     <div class="my-3 text-center">
-        {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="alert alert-{{ label }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
         {% endfor %}
-    </div>
+    {% endfor %}
+</div>
 
     </div>
-  </section>
-                <!-- End Hero -->
+
+  </section><!-- End Hero -->
 
 
   <!-- ======= Services Section ======= -->
